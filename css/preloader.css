@@ -1,0 +1,131 @@
+/* STACKLY - Financial Page Transition Preloader Styles */
+
+.stackly-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 999999;
+  background-color: #050B14;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.stackly-preloader.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.preloader-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(18, 74, 161, 0.35) 0%, rgba(5, 11, 20, 0.98) 75%);
+  z-index: 1;
+}
+
+.preloader-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  height: 320px;
+}
+
+/* Floating Currency Note Wrapper */
+.preloader-currency-wrapper {
+  position: absolute;
+  width: 240px;
+  height: 120px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  z-index: 2;
+  filter: drop-shadow(0 15px 35px rgba(223, 177, 91, 0.35));
+}
+
+.currency-note-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Centered Stackly Logo */
+.preloader-logo-container {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 70px;
+}
+
+.preloader-logo {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 25px rgba(223, 177, 91, 0.7));
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+/* Particle Explosion Container */
+.preloader-particles-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.currency-particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight: 800;
+  color: #DFB15B;
+  user-select: none;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  text-shadow: 0 0 10px rgba(223, 177, 91, 0.9);
+}
+
+.currency-particle.symbol {
+  font-size: 18px;
+}
+
+.currency-particle.coin {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFE8A3 0%, #DFB15B 100%);
+  box-shadow: 0 0 12px rgba(223, 177, 91, 0.9);
+}
+
+.currency-particle.shard {
+  width: 14px;
+  height: 8px;
+  background: rgba(223, 177, 91, 0.85);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(223, 177, 91, 0.6);
+}

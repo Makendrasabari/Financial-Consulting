@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    const role = sessionStorage.getItem('user_role') || 'analyst';
+    if (role === 'analyst') {
+      location.replace('financial-analyst-dashboard.html');
+    } else {
+      location.replace('investment-advisor-dashboard.html');
+    }
+  </script>
+</head>
+<body>
+  Redirecting to your dashboard terminal...
+</body>
+</html>

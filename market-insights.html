@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    const role = sessionStorage.getItem('user_role') || 'analyst';
+    if (role === 'analyst') {
+      location.replace('financial-analyst-insights.html');
+    } else {
+      location.replace('investment-advisor-insights.html');
+    }
+  </script>
+</head>
+<body>
+  Redirecting...
+</body>
+</html>

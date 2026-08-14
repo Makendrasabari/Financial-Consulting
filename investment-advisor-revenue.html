@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advisor Revenue Analysis - Stackly</title>
+  <meta name="description" content="Advisor fee structures, commission splits, and revenue forecasts.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="section-dark">
+
+  <div class="dashboard-container">
+    
+    <!-- MOBILE DRAWER BACKDROP -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <a href="investment-advisor-dashboard.html">
+          <img src="assets/Logo23.webp" alt="Stackly Logo">
+        </a>
+        <button class="sidebar-close-btn" id="sidebar-close" aria-label="Close sidebar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <nav class="sidebar-menu">
+        <a href="investment-advisor-dashboard.html" class="sidebar-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="9"></rect>
+            <rect x="14" y="3" width="7" height="5"></rect>
+            <rect x="14" y="12" width="7" height="9"></rect>
+            <rect x="3" y="16" width="7" height="5"></rect>
+          </svg>
+          Advisory Terminal
+        </a>
+        <a href="investment-advisor-overview.html" class="sidebar-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+          Wealth Audit
+        </a>
+        <a href="investment-advisor-revenue.html" class="sidebar-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          AUM fee Yields
+        </a>
+        <a href="investment-advisor-portfolio.html" class="sidebar-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          Client Holdings
+        </a>
+        <a href="investment-advisor-insights.html" class="sidebar-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+          Arbitrage Spreads
+        </a>
+        <div style="height: 1px; background: rgba(255, 255, 255, 0.06); margin: 24px 16px;"></div>
+        <a href="login.html" class="sidebar-item logout-button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          Logout
+        </a>
+      </nav>
+    </aside>
+
+    <!-- MAIN DISPLAY CONTENT -->
+    <main class="main-content">
+      
+      <!-- HEADER -->
+      <header class="dashboard-header">
+        <button class="menu-toggle-btn" id="menu-toggle">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <div class="header-title-group">
+          <h1 class="header-title">Revenue Analysis</h1>
+          <span class="header-subtitle">Advisor commission structures, quarterly fee yields, and fee projection curves.</span>
+        </div>
+
+        <div class="header-actions">
+          <!-- Notification -->
+          <button class="header-icon-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notification-badge"></span>
+          </button>
+
+          <!-- Profile Menu with Dropdown -->
+          <div class="profile-menu" id="profile-menu">
+            <div class="profile-avatar" id="avatar-initials">JR</div>
+            <span class="profile-name" id="avatar-fullname">Jordan Reyes</span>
+            
+            <div class="profile-dropdown" id="profile-dropdown">
+              <div class="dropdown-header">
+                <div class="dropdown-avatar" id="dropdown-initials">JR</div>
+                <div class="dropdown-info">
+                  <div class="dropdown-name" id="dropdown-fullname">Jordan Reyes</div>
+                  <div class="dropdown-email" id="dropdown-email">jordan.reyes@stackly.com</div>
+                </div>
+              </div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item">
+                <span class="dropdown-label">Role</span>
+                <span class="dropdown-value" id="dropdown-role">Investment Advisor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- BODY -->
+      <div class="dashboard-body">
+
+        <!-- SECTION 1: Advisory Fee Performance -->
+        <div class="panel-header">
+          <h2 class="panel-title">Advisory Fee Revenue Performance</h2>
+        </div>
+        <section class="kpi-grid" style="margin-bottom: 32px;">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">AUM Fee Revenue YTD</span>
+              <div class="kpi-icon-wrapper">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="kpi-value-group">
+              <span class="kpi-value">$3.25M</span>
+              <span class="kpi-trend trend-up">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+                +14.2%
+              </span>
+            </div>
+            <div class="kpi-footer">Based on 0.85% asset wrap pricing model</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">Performance Bonus Yield</span>
+              <div class="kpi-icon-wrapper">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                  <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="kpi-value-group">
+              <span class="kpi-value">+$425K</span>
+              <span class="kpi-trend trend-up">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+                +8.8%
+              </span>
+            </div>
+            <div class="kpi-footer">Accumulated on high-water mark yields</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">Annual growth</span>
+              <div class="kpi-icon-wrapper">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v20M17 5l-5-3-5 3M12 2v20"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="kpi-value-group">
+              <span class="kpi-value">+16.4%</span>
+              <span class="kpi-trend trend-up">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+                +2.5%
+              </span>
+            </div>
+            <div class="kpi-footer">Compounded year-over-year asset fees</div>
+          </div>
+        </section>
+
+        <!-- TWO COLUMN CHART SECTION -->
+        <div class="charts-grid" style="margin-bottom: 32px;">
+          <!-- SECTION 2: Monthly AUM Fee Revenue Trends -->
+          <div class="chart-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Monthly AUM Fee Revenue Trends</h3>
+            </div>
+            <div class="chart-container" style="position: relative; height: 300px;">
+              <canvas id="monthlyAumFeeChart"></canvas>
+            </div>
+          </div>
+
+          <!-- SECTION 3: Revenue by Investment Vehicle -->
+          <div class="chart-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Revenue by Investment Vehicle</h3>
+            </div>
+            <div class="chart-container" style="position: relative; height: 300px;">
+              <canvas id="vehicleRevenueChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: AUM Growth & Fee Forecast -->
+        <div class="chart-panel" style="margin-bottom: 32px;">
+          <div class="panel-header">
+            <h3 class="panel-title">12-Month Fee Revenue Projection</h3>
+          </div>
+          <div class="chart-container" style="position: relative; height: 260px;">
+            <canvas id="feeProjectionChart"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Script Modules -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/custom-select.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Monthly AUM Fee Chart (Area Chart)
+      const ctxArea = document.getElementById('monthlyAumFeeChart').getContext('2d');
+      new Chart(ctxArea, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          datasets: [{
+            label: 'AUM Fees Collected ($K)',
+            data: [210, 230, 240, 260, 275, 290],
+            borderColor: '#DFB15B',
+            backgroundColor: 'rgba(223, 177, 91, 0.1)',
+            borderWidth: 2.5,
+            fill: true,
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } },
+            x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+          }
+        }
+      });
+
+      // Revenue by Vehicle (Doughnut Chart)
+      const ctxDoughnut = document.getElementById('vehicleRevenueChart').getContext('2d');
+      new Chart(ctxDoughnut, {
+        type: 'doughnut',
+        data: {
+          labels: ['Mutual Funds', 'ETFs', 'SMA Accounts', 'Private Placement'],
+          datasets: [{
+            data: [450, 680, 1100, 320],
+            backgroundColor: ['#DFB15B', '#00C6FF', '#00F2FE', '#1E293B'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#94A3B8', boxWidth: 12 }
+            }
+          }
+        }
+      });
+
+      // Fee Revenue Projection (Grouped Bar Chart)
+      const ctxProj = document.getElementById('feeProjectionChart').getContext('2d');
+      new Chart(ctxProj, {
+        type: 'bar',
+        data: {
+          labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q1-F', 'Q2-F'],
+          datasets: [
+            {
+              label: 'Historical / Target Baseline ($K)',
+              data: [650, 700, 750, 800, 850, 900],
+              backgroundColor: '#1E293B',
+              borderRadius: 4
+            },
+            {
+              label: 'Projected Advisory Performance ($K)',
+              data: [680, 730, 775, 825, 890, 950],
+              backgroundColor: '#DFB15B',
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#94A3B8', boxWidth: 12 }
+            }
+          },
+          scales: {
+            y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } },
+            x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

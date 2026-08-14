@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advisor Financial Overview - Stackly</title>
+  <meta name="description" content="Asset health and reserve ratio audits for Advisor portfolios.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="section-dark">
+
+  <div class="dashboard-container">
+    
+    <!-- MOBILE DRAWER BACKDROP -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <a href="investment-advisor-dashboard.html">
+          <img src="assets/Logo23.webp" alt="Stackly Logo">
+        </a>
+        <button class="sidebar-close-btn" id="sidebar-close" aria-label="Close sidebar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <nav class="sidebar-menu">
+        <a href="investment-advisor-dashboard.html" class="sidebar-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="9"></rect>
+            <rect x="14" y="3" width="7" height="5"></rect>
+            <rect x="14" y="12" width="7" height="9"></rect>
+            <rect x="3" y="16" width="7" height="5"></rect>
+          </svg>
+          Advisory Terminal
+        </a>
+        <a href="investment-advisor-overview.html" class="sidebar-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+          Wealth Audit
+        </a>
+        <a href="investment-advisor-revenue.html" class="sidebar-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          AUM fee Yields
+        </a>
+        <a href="investment-advisor-portfolio.html" class="sidebar-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          Client Holdings
+        </a>
+        <a href="investment-advisor-insights.html" class="sidebar-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+          Arbitrage Spreads
+        </a>
+        <div style="height: 1px; background: rgba(255, 255, 255, 0.06); margin: 24px 16px;"></div>
+        <a href="login.html" class="sidebar-item logout-button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          Logout
+        </a>
+      </nav>
+    </aside>
+
+    <!-- MAIN DISPLAY CONTENT -->
+    <main class="main-content">
+      
+      <!-- HEADER -->
+      <header class="dashboard-header">
+        <button class="menu-toggle-btn" id="menu-toggle">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <div class="header-title-group">
+          <h1 class="header-title">Financial Overview</h1>
+          <span class="header-subtitle">Managed asset turns, capital reserve ratios, and historical risk-adjusted efficiency performance index scores.</span>
+        </div>
+
+        <div class="header-actions">
+          <!-- Notification -->
+          <button class="header-icon-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notification-badge"></span>
+          </button>
+
+          <!-- Profile Menu with Dropdown -->
+          <div class="profile-menu" id="profile-menu">
+            <div class="profile-avatar" id="avatar-initials">JR</div>
+            <span class="profile-name" id="avatar-fullname">Jordan Reyes</span>
+            
+            <div class="profile-dropdown" id="profile-dropdown">
+              <div class="dropdown-header">
+                <div class="dropdown-avatar" id="dropdown-initials">JR</div>
+                <div class="dropdown-info">
+                  <div class="dropdown-name" id="dropdown-fullname">Jordan Reyes</div>
+                  <div class="dropdown-email" id="dropdown-email">jordan.reyes@stackly.com</div>
+                </div>
+              </div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item">
+                <span class="dropdown-label">Role</span>
+                <span class="dropdown-value" id="dropdown-role">Investment Advisor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- BODY -->
+      <div class="dashboard-body">
+
+        <!-- SECTION 1: Investment Advisory Health -->
+        <div class="panel-header">
+          <h2 class="panel-title">Investment Advisory Health</h2>
+        </div>
+        <section class="kpi-grid" style="margin-bottom: 32px;">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">Asset Turn Rate</span>
+              <div class="kpi-icon-wrapper">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="kpi-value-group">
+              <span class="kpi-value">18.4%</span>
+              <span class="kpi-trend trend-up">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+                +2.1%
+              </span>
+            </div>
+            <div class="kpi-footer">Rebalanced allocation transactions velocity</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">Custodian Vault Coverage</span>
+              <div class="kpi-icon-wrapper">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="kpi-value-group">
+              <span class="kpi-value">99.8%</span>
+              <span class="kpi-trend trend-neutral" style="color: #64748B;">
+                Stable
+              </span>
+            </div>
+            <div class="kpi-footer">Institutional custody asset assurance level</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">Average Fee Margin</span>
+              <div class="kpi-icon-wrapper">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="kpi-value-group">
+              <span class="kpi-value">0.85%</span>
+              <span class="kpi-trend trend-down">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                -0.02%
+              </span>
+            </div>
+            <div class="kpi-footer">Optimized asset-under-management fee yield</div>
+          </div>
+        </section>
+
+        <!-- TWO COLUMN CHART SECTION -->
+        <div class="charts-grid" style="margin-bottom: 32px;">
+          <!-- SECTION 2: Client Capital & Liability Flow -->
+          <div class="chart-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Advisory Assets vs Client Obligations</h3>
+            </div>
+            <div class="chart-container" style="position: relative; height: 300px;">
+              <canvas id="assetLiabilityChart"></canvas>
+            </div>
+          </div>
+
+          <!-- SECTION 4: Risk-Adjusted Portfolio Metrics (Radar) -->
+          <div class="chart-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Risk-Adjusted Performance Index</h3>
+            </div>
+            <div class="chart-container" style="position: relative; height: 300px;">
+              <canvas id="performanceRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: Advisory Reserve & Capital Flow Performance -->
+        <div class="chart-panel" style="margin-bottom: 32px;">
+          <div class="panel-header">
+            <h3 class="panel-title">Monthly Net Capital Inflow Pacing</h3>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+              <div class="kpi-label">Client Net Capital Deposited</div>
+              <div class="kpi-value" style="font-size: 24px; color: #DFB15B; margin: 8px 0;">+$48.2M</div>
+              <div style="height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+                <div style="width: 82%; height: 100%; background: #DFB15B;"></div>
+              </div>
+            </div>
+            <div class="kpi-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+              <div class="kpi-label">Client Redemption Withdrawals</div>
+              <div class="kpi-value" style="font-size: 24px; color: #E2E8F0; margin: 8px 0;">-$9.8M</div>
+              <div style="height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+                <div style="width: 22%; height: 100%; background: #64748B;"></div>
+              </div>
+            </div>
+            <div class="kpi-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+              <div class="kpi-label">Net Inflow Growth Pace</div>
+              <div class="kpi-value" style="font-size: 24px; color: #00F2FE; margin: 8px 0;">+$38.4M</div>
+              <div style="height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+                <div style="width: 70%; height: 100%; background: #00F2FE;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Script Modules -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/custom-select.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Asset Liability Chart (Line Chart)
+      const ctxLine = document.getElementById('assetLiabilityChart').getContext('2d');
+      new Chart(ctxLine, {
+        type: 'line',
+        data: {
+          labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+          datasets: [
+            {
+              label: 'Active Asset Holdings ($M)',
+              data: [290, 310, 350, 412.5],
+              borderColor: '#DFB15B',
+              backgroundColor: 'rgba(223, 177, 91, 0.05)',
+              borderWidth: 2.5,
+              tension: 0.3,
+              fill: true
+            },
+            {
+              label: 'Reserved Client Liabilities ($M)',
+              data: [80, 85, 90, 95],
+              borderColor: '#64748B',
+              borderWidth: 2,
+              borderDash: [6, 4],
+              tension: 0.3,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: '#94A3B8', boxWidth: 12 } }
+          },
+          scales: {
+            y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } },
+            x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+          }
+        }
+      });
+
+      // Performance Index (Scatter Plot)
+      const ctxScatter = document.getElementById('performanceRadarChart').getContext('2d');
+      new Chart(ctxScatter, {
+        type: 'scatter',
+        data: {
+          datasets: [{
+            label: 'Advisory Performance Ratios',
+            data: [
+              { x: 1.2, y: 15, label: 'Sharpe Ratio' },
+              { x: 1.8, y: 18, label: 'Treynor Ratio' },
+              { x: 0.8, y: 8, label: 'Info Ratio' },
+              { x: 2.2, y: 22, label: 'Alpha Index' },
+              { x: 0.5, y: 5, label: 'Beta Profile' }
+            ],
+            backgroundColor: '#DFB15B',
+            borderColor: '#DFB15B',
+            pointRadius: 8,
+            pointHoverRadius: 10
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: (context) => {
+                  const item = context.dataset.data[context.dataIndex];
+                  return `${item.label}: Risk=${item.x}, Yield=${item.y}%`;
+                }
+              }
+            },
+            legend: { display: false }
+          },
+          scales: {
+            x: {
+              title: { display: true, text: 'Volatility / Risk Score', color: '#94A3B8' },
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: '#94A3B8' }
+            },
+            y: {
+              title: { display: true, text: 'Annual Yield (%)', color: '#94A3B8' },
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: '#94A3B8' }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Stackly Financial Intelligence</title>
+  <meta name="description" content="Learn more about Stackly's approach to financial consulting, our senior team of analysts, and our long-term client partnerships.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/preloader.css">
+  <link rel="stylesheet" href="css/about.css">
+  <style>
+    /* 3D Rotate-in & Accent Hover style for principle-cards */
+    .principle-card {
+      padding: 24px 20px 32px 20px !important;
+      margin: -24px -20px 0 -20px !important;
+      border: 1px solid transparent !important;
+      border-top: 1px solid #E2E8F0 !important;
+      border-radius: var(--border-radius-sm) !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      transition: border-top-color 0.4s ease !important;
+    }
+    .principle-card:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      border-color: transparent !important;
+      border-top-color: var(--primary-gold) !important;
+    }
+  </style>
+</head>
+<body>
+
+
+
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="assets/Logo23.webp" alt="Stackly Logo">
+      </a>
+      <div class="mobile-menu-toggle" id="mobile-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links-wrapper">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-item">Home</a></li>
+          <li><a href="services.html" class="nav-item">Services</a></li>
+          <li><a href="blog.html" class="nav-item">Blog</a></li>
+          <li><a href="about.html" class="nav-item active">About Us</a></li>
+          <li><a href="contact.html" class="nav-item">Contact Us</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="login.html" class="login-link">Login</a>
+          <a href="404.html" class="btn-advisor-outline">Talk to Advisor</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section 1: Hero Section -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="about-hero-content">
+        <span class="label-gold">About Stackly</span>
+        <h1 class="hero-title">Financial Clarity,<br>Built Over 15 Years</h1>
+        <p class="hero-desc">
+          We're a team of financial strategists, analysts, and operators who believe better decisions come from better intelligence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Our Story Section -->
+  <section class="story-section">
+    <div class="container story-grid">
+      <div class="story-content reveal-on-scroll">
+        <span class="label-gold">Our Story</span>
+        <h2>Founded on a Simple Conviction</h2>
+        <p>
+          Stackly Capital Partners was founded on the conviction that financial complexity shouldn't stand in the way of confident decisions. What began as a boutique advisory for growth-stage companies has become a trusted partner to CFOs, investors, and boards across 28 countries.
+        </p>
+        <p>
+          Today, our team combines institutional-grade financial rigor with the agility of a modern consultancy — advising on everything from capital structure to large-scale transformation.
+        </p>
+      </div>
+      <div class="story-card reveal-on-scroll delay-200">
+        <div class="story-chart-wrapper">
+          <svg width="100%" height="100%" viewBox="0 0 350 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="chart-glow" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2B59C3" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#2B59C3" stop-opacity="0.00"/>
+              </linearGradient>
+              <clipPath id="chart-clip">
+                <rect id="chart-clip-rect" x="0" y="0" width="0" height="150" />
+              </clipPath>
+            </defs>
+            <!-- Chart Grid Lines -->
+            <line x1="0" y1="130" x2="350" y2="130" stroke="#E2E8F0" stroke-width="1"/>
+            <line x1="0" y1="90" x2="350" y2="90" stroke="#F1F5F9" stroke-width="1"/>
+            <line x1="0" y1="50" x2="350" y2="50" stroke="#F1F5F9" stroke-width="1"/>
+            
+            <!-- Chart Area Under Line -->
+            <path d="M 20 110 L 60 100 L 100 110 L 140 80 L 180 90 L 220 60 L 260 70 L 300 40 L 330 48 L 330 130 L 20 130 Z" fill="url(#chart-glow)" class="story-chart-area" clip-path="url(#chart-clip)"/>
+            <!-- Chart Main Line -->
+            <path d="M 20 110 L 60 100 L 100 110 L 140 80 L 180 90 L 220 60 L 260 70 L 300 40 L 330 48" stroke="#2B59C3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="story-chart-line"/>
+            <!-- Data Points -->
+            <circle cx="300" cy="40" r="4" fill="#2B59C3" stroke="#FFFFFF" stroke-width="1.5" class="story-chart-point"/>
+          </svg>
+        </div>
+        <div class="story-card-divider"></div>
+        <div class="story-stats">
+          <div class="story-stat-col">
+            <span class="story-stat-val">15+</span>
+            <span class="story-stat-lbl">Years Experience</span>
+          </div>
+          <div class="story-stat-col">
+            <span class="story-stat-val">$2.4B+</span>
+            <span class="story-stat-lbl">Capital Advised</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Milestones Section -->
+  <section class="milestones-section">
+    <div class="container">
+      <div class="milestones-header reveal-on-scroll">
+        <span class="label-gold">Milestones</span>
+        <h2>Fifteen Years of Compounding Trust</h2>
+      </div>
+      <div class="milestones-grid">
+        
+        <!-- Left: Timeline List -->
+        <div class="timeline-container reveal-on-scroll delay-200">
+          <div class="timeline-line"></div>
+          <div class="timeline-list">
+            
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-year">2011</div>
+              <h4 class="timeline-title">Stackly Founded</h4>
+              <p class="timeline-desc">Launched as a boutique advisory for growth-stage companies in London.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-year">2015</div>
+              <h4 class="timeline-title">First $500M Advised</h4>
+              <p class="timeline-desc">Crossed our first major capital advisory milestone across 40 clients.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-year">2019</div>
+              <h4 class="timeline-title">Global Expansion</h4>
+              <p class="timeline-desc">Opened offices across Europe, Asia-Pacific, and North America.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-year">2023</div>
+              <h4 class="timeline-title">Financial Intelligence Platform</h4>
+              <p class="timeline-desc">Introduced data-driven market signal tools for institutional clients.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-year">2026</div>
+              <h4 class="timeline-title">$2.4B+ Capital Advised</h4>
+              <p class="timeline-desc">Now serving 240+ clients across 28 countries worldwide.</p>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- Right: Milestones Zigzag Staggered Collage -->
+        <div class="milestones-visual reveal-on-scroll delay-300">
+          <div class="milestones-zigzag-container">
+            
+            <div class="zigzag-item item-1">
+              <div class="zigzag-image-wrapper">
+                <img src="assets/milestone_img1.webp" alt="Stackly London Founding 2011" class="milestones-img">
+              </div>
+            </div>
+            
+            <div class="zigzag-item item-2">
+              <div class="zigzag-image-wrapper">
+                <img src="assets/milestone_img2.webp" alt="Stackly Global Expansion" class="milestones-img">
+              </div>
+            </div>
+            
+            <div class="zigzag-item item-3">
+              <div class="zigzag-image-wrapper">
+                <img src="assets/milestone_img3.webp" alt="Stackly Capital Growth" class="milestones-img">
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Operating Principles Section -->
+  <section class="principles-section">
+    <div class="container">
+      <div class="principles-header reveal-on-scroll">
+        <span class="label-gold">What Drives Us</span>
+        <h2>Our Operating Principles</h2>
+      </div>
+      <div class="principles-grid">
+        
+        <div class="principle-card">
+          <div class="principle-num">01</div>
+          <h4 class="principle-title">Rigor First</h4>
+          <p class="principle-desc">Every recommendation is grounded in data, not intuition.</p>
+        </div>
+        
+        <div class="principle-card">
+          <div class="principle-num">02</div>
+          <h4 class="principle-title">Radical Clarity</h4>
+          <p class="principle-desc">We translate complexity into language leadership can act on.</p>
+        </div>
+        
+        <div class="principle-card">
+          <div class="principle-num">03</div>
+          <h4 class="principle-title">Long-Term View</h4>
+          <p class="principle-desc">We optimize for durable value, not short-term wins.</p>
+        </div>
+        
+        <div class="principle-card">
+          <div class="principle-num">04</div>
+          <h4 class="principle-title">Senior Access</h4>
+          <p class="principle-desc">Every client works directly with experienced strategists.</p>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Leadership Section -->
+  <section class="leadership-section" id="leadership">
+    <div class="container">
+      <div class="leadership-header reveal-on-scroll">
+        <span class="label-gold">Leadership</span>
+        <h2>Senior Strategists, Directly Involved</h2>
+      </div>
+      <div class="leadership-marquee reveal-on-scroll delay-100">
+        <div class="leadership-track">
+          
+          <div class="leadership-group">
+            
+            <div class="leader-card">
+              <div class="leader-img-wrapper">
+                <img src="assets/team_eleanor.webp" alt="Eleanor Whitfield" class="leader-img">
+              </div>
+              <h4 class="leader-name">Eleanor Whitfield</h4>
+              <span class="leader-role">Managing Partner</span>
+            </div>
+            
+            <div class="leader-card">
+              <div class="leader-img-wrapper">
+                <img src="assets/team_marcus.webp" alt="Marcus Adeyemi" class="leader-img">
+              </div>
+              <h4 class="leader-name">Marcus Adeyemi</h4>
+              <span class="leader-role">Head of Investment Advisory</span>
+            </div>
+            
+            <div class="leader-card">
+              <div class="leader-img-wrapper">
+                <img src="assets/team_sofia.webp" alt="Sofia Bianchi" class="leader-img">
+              </div>
+              <h4 class="leader-name">Sofia Bianchi</h4>
+              <span class="leader-role">Head of M&amp;A</span>
+            </div>
+            
+            <div class="leader-card">
+              <div class="leader-img-wrapper">
+                <img src="assets/team_david.webp" alt="David Chen" class="leader-img">
+              </div>
+              <h4 class="leader-name">David Chen</h4>
+              <span class="leader-role">Head of Risk &amp; Compliance</span>
+            </div>
+            
+          </div>
+          
+          <!-- Duplicate group for seamless looping -->
+          <div class="leadership-group">
+            
+            <div class="leader-card">
+              <div class="leader-img-wrapper">
+                <img src="assets/team_eleanor.webp" alt="Eleanor Whitfield" class="leader-img">
+              </div>
+              <h4 class="leader-name">Eleanor Whitfield</h4>
+              <span class="leader-role">Managing Partner</span>
+            </div>
+            
+            <div class="leader-card">
+              <div class="leader-img-wrapper">
+                <img src="assets/team_marcus.webp" alt="Marcus Adeyemi" class="leader-img">
+              </div>
+              <h4 class="leader-name">Marcus Adeyemi</h4>
+              <span class="leader-role">Head of Investment Advisory</span>
+            </div>
+            
+            <div class="leader-card">
+              <div class="leader-img-wrapper">
+                <img src="assets/team_sofia.webp" alt="Sofia Bianchi" class="leader-img">
+              </div>
+              <h4 class="leader-name">Sofia Bianchi</h4>
+              <span class="leader-role">Head of M&amp;A</span>
+            </div>
+            
+            <div class="leader-card">
+              <div class="leader-img-wrapper">
+                <img src="assets/team_david.webp" alt="David Chen" class="leader-img">
+              </div>
+              <h4 class="leader-name">David Chen</h4>
+              <span class="leader-role">Head of Risk &amp; Compliance</span>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Careers Section -->
+  <section class="careers-section" id="careers">
+    <div class="container careers-grid">
+      <div class="careers-content reveal-on-scroll">
+        <span class="label-gold">Careers</span>
+        <h2>Build Your Career at Stackly</h2>
+        <p>
+          We're always looking for analysts, advisors, and strategists who share our conviction that clarity creates value.
+        </p>
+        <a href="404.html" class="btn-primary">View Open Roles &rarr;</a>
+      </div>
+      <div class="careers-stats reveal-on-scroll delay-200">
+        
+        <div class="career-stat-card">
+          <div class="career-stat-num">28</div>
+          <div class="career-stat-lbl">Countries with Orion offices</div>
+        </div>
+        
+        <div class="career-stat-card">
+          <div class="career-stat-num">400+</div>
+          <div class="career-stat-lbl">Team members worldwide</div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Outcomes CTA Section -->
+  <section class="outcomes-section">
+    <div class="container outcomes-content reveal-on-scroll">
+      <h2>Ready to work with a team that thinks in outcomes?</h2>
+      <a href="404.html" class="btn-primary">Talk to Advisor &rarr;</a>
+    </div>
+  </section>
+
+  <!-- FOOTER SECTION -->
+  <footer class="footer-section">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Column 1: Logo & Info -->
+        <div class="footer-col footer-col-info">
+          <a href="index.html" class="footer-logo-link">
+            <img src="assets/Logo23.webp" alt="Stackly Logo" class="footer-logo">
+          </a>
+          <p class="footer-desc">
+            Strategic financial consulting for organizations navigating growth, transformation, investment, and long-term value creation.
+          </p>
+        </div>
+        
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="services.html" class="footer-link">Services</a></li>
+            <li><a href="blog.html" class="footer-link">Blog</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <!-- Column 3: Services Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title"><a href="404.html">Services</a></h4>
+          <ul class="footer-links">
+            <li><a href="404.html" class="footer-link">Corporate Finance</a></li>
+            <li><a href="404.html" class="footer-link">Investment Advisory</a></li>
+            <li><a href="404.html" class="footer-link">M&amp;A</a></li>
+            <li><a href="404.html" class="footer-link">Risk &amp; Compliance</a></li>
+          </ul>
+        </div>
+        
+        <!-- Column 4: Insights Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title"><a href="404.html">Insights</a></h4>
+          <ul class="footer-links">
+            <li><a href="404.html" class="footer-link">Articles</a></li>
+            <li><a href="404.html" class="footer-link">Reports</a></li>
+            <li><a href="404.html" class="footer-link">Market Intelligence</a></li>
+          </ul>
+        </div>
+
+      </div>
+      
+      <!-- Divider line -->
+      <div class="footer-divider"></div>
+      
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2026 Stackly</p>
+        <div class="footer-bottom-links">
+          <a href="404.html" class="footer-bottom-link">Privacy</a>
+          <a href="404.html" class="footer-bottom-link">Terms</a>
+          <a href="404.html" class="footer-bottom-link">Cookies</a>
+        </div>
+      </div>
+      
+    </div>
+  </footer>
+
+  <!-- JavaScript Modules -->
+    <!-- GSAP Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/preloader.js"></script>
+  <script src="js/custom-select.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Story Card Graph Drawing & Reveal Animation
+        const storyCardLine = document.querySelector('.story-chart-line');
+        const storyCardClipRect = document.getElementById('chart-clip-rect');
+        const storyCardPoint = document.querySelector('.story-chart-point');
+
+        if (storyCardLine && storyCardClipRect) {
+          const pathLength = storyCardLine.getTotalLength();
+          
+          // Initial hidden state
+          gsap.set(storyCardLine, { strokeDasharray: pathLength, strokeDashoffset: pathLength });
+          gsap.set(storyCardClipRect, { attr: { width: 0 } });
+          if (storyCardPoint) {
+            gsap.set(storyCardPoint, { scale: 0, transformOrigin: 'center center' });
+          }
+
+          // Trigger timeline when the story chart enters the viewport
+          const storyChartTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: '.story-chart-wrapper',
+              start: 'top 85%',
+              toggleActions: 'restart reset restart reset'
+            }
+          });
+
+          // Draw the main line and reveal the shaded glow mask synchronously
+          storyChartTl.to(storyCardLine, { strokeDashoffset: 0, duration: 2.2, ease: 'power2.out' })
+                      .to(storyCardClipRect, { attr: { width: 350 }, duration: 2.2, ease: 'power2.out' }, 0);
+          
+          // Pop in the data point circle at the very end
+          if (storyCardPoint) {
+            storyChartTl.to(storyCardPoint, { scale: 1, duration: 0.5, ease: 'back.out(1.8)' }, '-=0.4');
+          }
+        }
+
+        // Counter count-up animation
+        const statsContainer = document.querySelector('.story-stats');
+        if (statsContainer) {
+          const statCols = statsContainer.querySelectorAll('.story-stat-col');
+          if (statCols.length >= 2) {
+            const targets = [
+              { el: statCols[0].querySelector('.story-stat-val'), target: 15, suffix: '+', prefix: '' },
+              { el: statCols[1].querySelector('.story-stat-val'), target: 2.4, suffix: 'B+', prefix: '$', decimals: 1 }
+            ];
+
+            targets.forEach(item => {
+              if (item.el) {
+                if (item.decimals) {
+                  item.el.textContent = item.prefix + (0.0).toFixed(item.decimals) + item.suffix;
+                } else {
+                  item.el.textContent = item.prefix + '0' + item.suffix;
+                }
+              }
+            });
+
+            const runCountUp = () => {
+              targets.forEach(item => {
+                if (item.el) {
+                  const doc = { val: 0 };
+                  gsap.to(doc, {
+                    val: item.target,
+                    duration: 2.0,
+                    ease: 'power1.out',
+                    onUpdate: () => {
+                      if (item.decimals) {
+                        item.el.textContent = item.prefix + doc.val.toFixed(item.decimals) + item.suffix;
+                      } else {
+                        item.el.textContent = item.prefix + Math.floor(doc.val) + item.suffix;
+                      }
+                    }
+                  });
+                }
+              });
+            };
+
+            const resetCount = () => {
+              targets.forEach(item => {
+                if (item.el) {
+                  if (item.decimals) {
+                    item.el.textContent = item.prefix + (0.0).toFixed(item.decimals) + item.suffix;
+                  } else {
+                    item.el.textContent = item.prefix + '0' + item.suffix;
+                  }
+                }
+              });
+            };
+
+            ScrollTrigger.create({
+              trigger: '.story-stats',
+              start: 'top 85%',
+              onEnter: runCountUp,
+              onEnterBack: runCountUp,
+              onLeave: resetCount,
+              onLeaveBack: resetCount
+            });
+          }
+        }
+
+        // 3D Rotate-In Scroll Animation for Operating Principles Cards
+        const principleCards = gsap.utils.toArray('.principle-card');
+        gsap.set(principleCards, { 
+          opacity: 0,
+          transformPerspective: 1000
+        });
+
+        const principleTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '.principles-grid',
+            start: 'top 80%',
+            toggleActions: 'restart reset restart reset'
+          }
+        });
+
+        const principleAngles = [
+          { rotateX: 16, rotateY: -12, y: 35 },
+          { rotateX: -16, rotateY: 12, y: 35 },
+          { rotateX: 16, rotateY: 12, y: 35 },
+          { rotateX: -16, rotateY: -12, y: 35 }
+        ];
+
+        principleCards.forEach((card, idx) => {
+          principleTl.fromTo(card, 
+            {
+              opacity: 0,
+              rotateX: principleAngles[idx].rotateX,
+              rotateY: principleAngles[idx].rotateY,
+              y: principleAngles[idx].y
+            },
+            {
+              opacity: 1,
+              rotateX: 0,
+              rotateY: 0,
+              y: 0,
+              duration: 1.2,
+              ease: 'power3.out'
+            },
+            idx * 0.18
+          );
+        });
+
+        // Hover Effect for Principle Cards
+        principleCards.forEach(card => {
+          const title = card.querySelector('.principle-title');
+
+          card.addEventListener('mouseenter', () => {
+            gsap.killTweensOf([card, title]);
+            
+            gsap.to(card, {
+              backgroundColor: 'rgba(223, 177, 91, 0.06)',
+              borderColor: 'rgba(223, 177, 91, 0.25)',
+              borderTopColor: '#DFB15B',
+              boxShadow: '0 12px 28px rgba(223, 177, 91, 0.08)',
+              y: -6,
+              scale: 1.01,
+              duration: 0.4,
+              ease: 'power3.out'
+            });
+
+            if (title) {
+              gsap.to(title, {
+                color: '#050B14',
+                duration: 0.4
+              });
+            }
+          });
+
+          card.addEventListener('mouseleave', () => {
+            gsap.killTweensOf([card, title]);
+
+            gsap.to(card, {
+              backgroundColor: 'transparent',
+              borderColor: 'transparent',
+              borderTopColor: '#E2E8F0',
+              boxShadow: 'none',
+              y: 0,
+              scale: 1,
+              duration: 0.4,
+              ease: 'power3.out'
+            });
+
+            if (title) {
+              gsap.to(title, {
+                color: '#0A1124',
+                duration: 0.4
+              });
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

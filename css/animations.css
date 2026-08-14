@@ -1,0 +1,125 @@
+/* STACKLY - Transitions & Animations */
+
+/* Hover transitions are defined on elements globally. Here we declare helper animation keyframes & scroll reveal classes. */
+
+/* Fade & Slide In Up (used for cards, titles on scroll) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawPath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillDonut {
+  to {
+    stroke-dashoffset: 25; /* Labeled arc */
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 8px 30px rgba(223, 177, 91, 0.3);
+  }
+  50% {
+    box-shadow: 0 8px 40px rgba(223, 177, 91, 0.5);
+  }
+  100% {
+    box-shadow: 0 8px 30px rgba(223, 177, 91, 0.3);
+  }
+}
+
+/* Scroll Reveal Classes (Driven by Intersection Observer in JS) */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* SVG Animation Helpers */
+.svg-animate-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  will-change: stroke-dashoffset;
+}
+
+.svg-animate-path.active {
+  animation: drawPath 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.svg-animate-donut {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  will-change: stroke-dashoffset;
+}
+
+.svg-animate-donut.active {
+  animation: drawPath 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Micro interaction styling */
+.btn-primary.pulse {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* Performance optimization and initial state for Cinematic Image Reveal */
+.featured-img, 
+.hand-phone-img, 
+.post-img-wrapper[class*="gradient-"], 
+.contact-map-img, 
+.leader-img, 
+.cta-advisor-photo,
+.milestones-img {
+  opacity: 0;
+  clip-path: polygon(0% 100%, 0% 100%, 100% 100%, 100% 100%);
+  transform: scale(1.08) translate3d(0, 0, 0);
+  will-change: clip-path, transform, opacity;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+

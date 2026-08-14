@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Stackly Financial Intelligence</title>
+  <meta name="description" content="Explore our financial consulting services, from corporate finance and investment advisory to risk & compliance and strategic planning.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/preloader.css">
+  <link rel="stylesheet" href="css/services.css">
+  <style>
+    /* Prevent CSS transform transition on service-card elements to avoid conflicts with GSAP */
+    .services-grid-section .service-watermark,
+    .services-grid-section .service-icon-box,
+    .services-grid-section .service-explore-link,
+    .services-grid-section .service-explore-link svg {
+      transition-property: color, background-color, border-color, stroke, opacity !important;
+    }
+
+    /* 3D Rotate-in & Accent Hover style for approach-cards */
+    .approach-card {
+      padding: 24px 20px 32px 20px !important;
+      margin: -24px -20px 0 -20px !important;
+      border: 1px solid transparent !important;
+      border-top: 1px solid #E2E8F0 !important;
+      border-radius: var(--border-radius-sm) !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      transition: border-top-color 0.4s ease !important;
+    }
+    .approach-card:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      border-color: transparent !important;
+      border-top-color: var(--primary-gold) !important;
+    }
+
+    /* 3D Flip Card Styles */
+    .engagement-grid {
+      perspective: 2000px;
+    }
+
+    .engagement-card {
+      position: relative;
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      height: 500px; /* match the card height */
+      perspective: 1500px;
+      overflow: visible !important; /* Allow 3D depth to pop */
+      transition: none !important; /* disable hover transition of the outer container */
+    }
+
+    .engagement-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    .engagement-card-front, .engagement-card-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: var(--border-radius-lg);
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    .engagement-card-front {
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+      z-index: 2;
+      transform: rotateY(0deg);
+    }
+
+    .engagement-card.card-featured .engagement-card-front {
+      background: linear-gradient(135deg, #0B1528 0%, #050B14 100%);
+      border: 1px solid rgba(223, 177, 91, 0.3);
+      color: var(--text-light-primary);
+      box-shadow: 0 15px 35px rgba(5, 11, 20, 0.25), 0 0 30px rgba(223, 177, 91, 0.08);
+    }
+
+    .engagement-card-back {
+      background-color: #FFFFFF;
+      border: 1px solid var(--primary-gold);
+      transform: rotateY(180deg);
+      z-index: 1;
+      box-shadow: 0 12px 30px rgba(223, 177, 91, 0.08);
+      justify-content: flex-start;
+    }
+
+    .engagement-card.card-featured .engagement-card-back {
+      background: linear-gradient(135deg, #0B1528 0%, #050B14 100%);
+      border: 1px solid var(--primary-gold);
+      color: var(--text-light-primary);
+      box-shadow: 0 20px 45px rgba(5, 11, 20, 0.35), 0 0 35px rgba(223, 177, 91, 0.15);
+    }
+
+    .engagement-back-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-dark-primary);
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    .engagement-card.card-featured .engagement-back-title {
+      color: var(--text-light-primary);
+    }
+
+    .engagement-back-desc {
+      font-size: 14px;
+      color: var(--text-dark-secondary);
+      line-height: 1.6;
+      margin-top: 12px;
+      flex-grow: 1;
+    }
+    .engagement-card.card-featured .engagement-back-desc {
+      color: var(--text-light-secondary);
+    }
+
+    .engagement-back-divider {
+      height: 1px;
+      background-color: #E2E8F0;
+      margin: 24px 0;
+    }
+    .engagement-card.card-featured .engagement-back-divider {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .engagement-card-back .back-cta {
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+
+
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="assets/Logo23.webp" alt="Stackly Logo">
+      </a>
+      <div class="mobile-menu-toggle" id="mobile-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links-wrapper">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-item">Home</a></li>
+          <li><a href="services.html" class="nav-item active">Services</a></li>
+          <li><a href="blog.html" class="nav-item">Blog</a></li>
+          <li><a href="about.html" class="nav-item">About Us</a></li>
+          <li><a href="contact.html" class="nav-item">Contact Us</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="login.html" class="login-link">Login</a>
+          <a href="404.html" class="btn-advisor-outline">Talk to Advisor</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section 1: Hero Section -->
+  <section class="services-hero">
+    <div class="container">
+      <div class="services-hero-content">
+        <span class="label-gold">What We Do</span>
+        <h1 class="hero-title">Financial Expertise Built Around Your Ambition</h1>
+        <p class="hero-desc">
+          Six focused disciplines, one integrated approach — helping CFOs, investors, and boards turn financial complexity into a strategy for growth.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Services Grid Section -->
+  <section class="services-grid-section">
+    <div class="container">
+      <div class="services-grid">
+        
+        <!-- Card 01: Corporate Finance -->
+        <div class="service-card">
+          <div class="service-watermark">01</div>
+          <div class="service-card-body">
+            <div class="service-icon-box">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+              </svg>
+            </div>
+            <h3 class="service-title">Corporate Finance</h3>
+            <p class="service-desc">Build stronger financial foundations and make better capital decisions.</p>
+            <a href="404.html" class="service-explore-link">
+              Explore 
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 02: Investment Advisory -->
+        <div class="service-card">
+          <div class="service-watermark">02</div>
+          <div class="service-card-body">
+            <div class="service-icon-box">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.5 4.5L21.75 7.5M21.75 7.5H16.5M21.75 7.5v5.25" />
+              </svg>
+            </div>
+            <h3 class="service-title">Investment Advisory</h3>
+            <p class="service-desc">Identify opportunities, evaluate risk, and maximize long-term value.</p>
+            <a href="404.html" class="service-explore-link">
+              Explore 
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 03: M&A Advisory -->
+        <div class="service-card">
+          <div class="service-watermark">03</div>
+          <div class="service-card-body">
+            <div class="service-icon-box">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h15M5.25 12h15m-12.75 5.25h12.75" />
+              </svg>
+            </div>
+            <h3 class="service-title">M&amp;A Advisory</h3>
+            <p class="service-desc">Navigate complex transactions with clarity and strategic confidence.</p>
+            <a href="404.html" class="service-explore-link">
+              Explore 
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 04: Risk & Compliance -->
+        <div class="service-card">
+          <div class="service-watermark">04</div>
+          <div class="service-card-body">
+            <div class="service-icon-box">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+            </div>
+            <h3 class="service-title">Risk &amp; Compliance</h3>
+            <p class="service-desc">Build resilient frameworks that protect your organization.</p>
+            <a href="404.html" class="service-explore-link">
+              Explore 
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 05: Financial Transformation -->
+        <div class="service-card">
+          <div class="service-watermark">05</div>
+          <div class="service-card-body">
+            <div class="service-icon-box">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v5.625c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 013 18.75v-5.625zM16.5 13.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 12 21 12.504 21 13.125v5.625c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125v-5.625zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v10.125c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625z" />
+              </svg>
+            </div>
+            <h3 class="service-title">Financial Transformation</h3>
+            <p class="service-desc">Modernize finance operations through technology, data, and strategy.</p>
+            <a href="404.html" class="service-explore-link">
+              Explore 
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 06: Strategic Planning -->
+        <div class="service-card">
+          <div class="service-watermark">06</div>
+          <div class="service-card-body">
+            <div class="service-icon-box">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+              </svg>
+            </div>
+            <h3 class="service-title">Strategic Planning</h3>
+            <p class="service-desc">Translate financial intelligence into actionable business strategy.</p>
+            <a href="404.html" class="service-explore-link">
+              Explore 
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Our Approach Section -->
+  <section class="approach-section">
+    <div class="container">
+      <div class="approach-header reveal-on-scroll">
+        <span class="label-gold">Our Approach</span>
+        <h2>A Disciplined Process, Applied to Every Engagement</h2>
+        <p>Every engagement follows the same rigorous sequence, adapted to your organization's scale and complexity.</p>
+      </div>
+      <div class="approach-grid">
+        
+        <div class="approach-card">
+          <div class="approach-step">01 — Discover</div>
+          <h4 class="approach-title">Diagnostic Review</h4>
+          <p class="approach-desc">We assess your financial position, systems, and strategic objectives.</p>
+        </div>
+        
+        <div class="approach-card">
+          <div class="approach-step">02 — Design</div>
+          <h4 class="approach-title">Strategic Roadmap</h4>
+          <p class="approach-desc">We build a tailored plan aligned to risk tolerance and growth targets.</p>
+        </div>
+        
+        <div class="approach-card">
+          <div class="approach-step">03 — Execute</div>
+          <h4 class="approach-title">Implementation</h4>
+          <p class="approach-desc">Our team works alongside yours to deliver measurable outcomes.</p>
+        </div>
+        
+        <div class="approach-card">
+          <div class="approach-step">04 — Sustain</div>
+          <h4 class="approach-title">Ongoing Partnership</h4>
+          <p class="approach-desc">We monitor performance and refine strategy as your business evolves.</p>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Engagement Models Section -->
+  <section class="engagement-section">
+    <div class="container">
+      <div class="engagement-header reveal-on-scroll">
+        <span class="label-gold">Engagement Models</span>
+        <h2>Flexible Ways to Work Together</h2>
+      </div>
+      <div class="engagement-grid">
+        
+        <!-- Advisory Retainer -->
+        <div class="engagement-card reveal-on-scroll">
+          <span class="engagement-model-type">Advisory Retainer</span>
+          <h3 class="engagement-model-cost">Custom</h3>
+          <ul class="engagement-features">
+            <li>Monthly strategic sessions</li>
+            <li>Direct access to senior advisors</li>
+            <li>Quarterly financial reviews</li>
+            <li>Priority response times</li>
+          </ul>
+          <a href="404.html" class="engagement-cta-link">Talk to Advisor</a>
+        </div>
+        
+        <!-- Project Engagement (Featured) -->
+        <div class="engagement-card card-featured reveal-on-scroll delay-100">
+          <span class="engagement-model-type">Project Engagement</span>
+          <h3 class="engagement-model-cost">Scoped</h3>
+          <ul class="engagement-features">
+            <li>Defined deliverables & timeline</li>
+            <li>Dedicated engagement lead</li>
+            <li>Cross-functional expert team</li>
+            <li>Post-project transition support</li>
+          </ul>
+          <a href="404.html" class="btn-primary">Talk to Advisor &rarr;</a>
+        </div>
+        
+        <!-- Institutional Partnership -->
+        <div class="engagement-card reveal-on-scroll delay-200">
+          <span class="engagement-model-type">Institutional Partnership</span>
+          <h3 class="engagement-model-cost">Custom</h3>
+          <ul class="engagement-features">
+            <li>Multi-year strategic alignment</li>
+            <li>Embedded advisory presence</li>
+            <li>Board-level reporting</li>
+            <li>Global coverage across 28 countries</li>
+          </ul>
+          <a href="404.html" class="engagement-cta-link">Talk to Advisor</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Pre-footer CTA Section -->
+  <section class="services-cta-section">
+    <div class="container services-cta-container">
+      <div class="cta-image-wrapper reveal-on-scroll">
+        <img src="assets/team_david.webp" alt="David Chen - Head of Risk &amp; Compliance" class="cta-advisor-photo">
+      </div>
+      <div class="cta-content-wrapper reveal-on-scroll delay-100">
+        <h2>Not sure which service fits?</h2>
+        <p>Tell us where you're headed — we'll help you find the right starting point.</p>
+        <a href="404.html" class="btn-primary">Talk to Advisor &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER SECTION -->
+  <footer class="footer-section">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Column 1: Logo & Info -->
+        <div class="footer-col footer-col-info">
+          <a href="index.html" class="footer-logo-link">
+            <img src="assets/Logo23.webp" alt="Stackly Logo" class="footer-logo">
+          </a>
+          <p class="footer-desc">
+            Strategic financial consulting for organizations navigating growth, transformation, investment, and long-term value creation.
+          </p>
+        </div>
+        
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="services.html" class="footer-link">Services</a></li>
+            <li><a href="blog.html" class="footer-link">Blog</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <!-- Column 3: Services Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title"><a href="404.html">Services</a></h4>
+          <ul class="footer-links">
+            <li><a href="404.html" class="footer-link">Corporate Finance</a></li>
+            <li><a href="404.html" class="footer-link">Investment Advisory</a></li>
+            <li><a href="404.html" class="footer-link">M&amp;A</a></li>
+            <li><a href="404.html" class="footer-link">Risk &amp; Compliance</a></li>
+          </ul>
+        </div>
+        
+        <!-- Column 4: Insights Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title"><a href="404.html">Insights</a></h4>
+          <ul class="footer-links">
+            <li><a href="404.html" class="footer-link">Articles</a></li>
+            <li><a href="404.html" class="footer-link">Reports</a></li>
+            <li><a href="404.html" class="footer-link">Market Intelligence</a></li>
+          </ul>
+        </div>
+
+      </div>
+      
+      <!-- Divider line -->
+      <div class="footer-divider"></div>
+      
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2026 Stackly</p>
+        <div class="footer-bottom-links">
+          <a href="404.html" class="footer-bottom-link">Privacy</a>
+          <a href="404.html" class="footer-bottom-link">Terms</a>
+          <a href="404.html" class="footer-bottom-link">Cookies</a>
+        </div>
+      </div>
+      
+    </div>
+  </footer>
+
+  <!-- JavaScript Modules -->
+    <!-- GSAP Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/preloader.js"></script>
+  <script src="js/custom-select.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const cards = gsap.utils.toArray('.services-grid-section .service-card');
+        
+        // Hide cards initially with GSAP to avoid layout flash
+        gsap.set(cards, { opacity: 0 });
+
+        // Setup the initial split-outwards positions toward the center
+        // Center column (Investment Advisory [1] & Financial Transformation [4]) starts scaled down and shifted slightly vertically
+        gsap.set(cards[1], { x: 0, y: 30, scale: 0.94, opacity: 0 });
+        gsap.set(cards[4], { x: 0, y: -30, scale: 0.94, opacity: 0 });
+
+        // Left column (Corporate Finance [0] & Risk & Compliance [3]) starts shifted right towards center
+        gsap.set(cards[0], { x: 80, y: 0, scale: 0.94, opacity: 0 });
+        gsap.set(cards[3], { x: 80, y: 0, scale: 0.94, opacity: 0 });
+
+        // Right column (M&A Advisory [2] & Strategic Planning [5]) starts shifted left towards center
+        gsap.set(cards[2], { x: -80, y: 0, scale: 0.94, opacity: 0 });
+        gsap.set(cards[5], { x: -80, y: 0, scale: 0.94, opacity: 0 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '.services-grid',
+            start: 'top 80%',
+            toggleActions: 'restart reset restart reset'
+          }
+        });
+
+        // 1. Settle Row 1 Center Card first
+        tl.to(cards[1], {
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 0.75,
+          ease: 'power3.out'
+        });
+
+        // 2. Settle Row 2 Center Card (slightly overlapping)
+        tl.to(cards[4], {
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 0.75,
+          ease: 'power3.out'
+        }, '-=0.45');
+
+        // 3. Outward animation for Row 1 Left and Right cards (animating symmetrically)
+        tl.to(cards[0], {
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out'
+        }, '-=0.25');
+
+        tl.to(cards[2], {
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out'
+        }, '-=0.8'); // start at the same time as cards[0] for symmetric outward blossom
+
+        // 4. Outward animation for Row 2 Left and Right cards (symmetrically)
+        tl.to(cards[3], {
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out'
+        }, '-=0.25');
+
+        tl.to(cards[5], {
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out'
+        }, '-=0.8'); // start at the same time as cards[3]
+
+
+
+        // Smooth Bottom-to-Top Staggered Entrance Animation for Approach Cards
+        const approachCards = gsap.utils.toArray('.approach-card');
+        gsap.set(approachCards, { 
+          opacity: 0,
+          y: 40
+        });
+
+        gsap.to(approachCards, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: '.approach-grid',
+            start: 'top 80%',
+            toggleActions: 'restart reset restart reset'
+          }
+        });
+
+        // Hover Effect for Approach Cards
+        approachCards.forEach(card => {
+          const title = card.querySelector('.approach-title');
+
+          card.addEventListener('mouseenter', () => {
+            gsap.killTweensOf([card, title]);
+            
+            gsap.to(card, {
+              backgroundColor: 'rgba(223, 177, 91, 0.06)',
+              borderColor: 'rgba(223, 177, 91, 0.25)',
+              borderTopColor: '#DFB15B',
+              boxShadow: '0 12px 28px rgba(223, 177, 91, 0.08)',
+              y: -6,
+              scale: 1.01,
+              duration: 0.4,
+              ease: 'power3.out'
+            });
+
+            if (title) {
+              gsap.to(title, {
+                color: '#050B14',
+                duration: 0.4
+              });
+            }
+          });
+
+          card.addEventListener('mouseleave', () => {
+            gsap.killTweensOf([card, title]);
+
+            gsap.to(card, {
+              backgroundColor: 'transparent',
+              borderColor: 'transparent',
+              borderTopColor: '#E2E8F0',
+              boxShadow: 'none',
+              y: 0,
+              scale: 1,
+              duration: 0.4,
+              ease: 'power3.out'
+            });
+
+            if (title) {
+              gsap.to(title, {
+                color: '#0A1124',
+                duration: 0.4
+              });
+            }
+          });
+        });
+
+        // 3D Flip Card Hover Animation for Engagement Cards
+        const engagementCards = gsap.utils.toArray('.engagement-card');
+        engagementCards.forEach(card => {
+          const originalHTML = card.innerHTML;
+          const typeEl = card.querySelector('.engagement-model-type');
+          if (!typeEl) return;
+          const modelType = typeEl.textContent.trim().toUpperCase();
+          
+          let backHTML = '';
+          if (modelType.includes('RETAINER')) {
+            backHTML = `
+              <span class="engagement-model-type">Advisory Retainer</span>
+              <h4 class="engagement-back-title">Ongoing Leadership</h4>
+              <p class="engagement-back-desc">Gain a dedicated strategic advisor to guide your long-term growth, capital allocation, and compliance.</p>
+              <div class="engagement-back-divider"></div>
+              <a href="contact.html" class="engagement-cta-link back-cta">Get Started &rarr;</a>
+            `;
+          } else if (modelType.includes('PROJECT')) {
+            backHTML = `
+              <span class="engagement-model-type" style="color: var(--primary-gold)">Project Engagement</span>
+              <h4 class="engagement-back-title" style="color: var(--text-light-primary)">Structured Execution</h4>
+              <p class="engagement-back-desc" style="color: var(--text-light-secondary)">Perfect for core business transformations, capital allocation roadmaps, or structured integrations.</p>
+              <div class="engagement-back-divider" style="background-color: rgba(255, 255, 255, 0.08)"></div>
+              <a href="contact.html" class="btn-primary back-cta" style="display: block; text-align: center; text-decoration: none;">Get Started &rarr;</a>
+            `;
+          } else {
+            backHTML = `
+              <span class="engagement-model-type">Institutional Partnership</span>
+              <h4 class="engagement-back-title">Global Alignment</h4>
+              <p class="engagement-back-desc">Full-scale corporate partnership with global execution teams, custom workflows, and deep reporting integration.</p>
+              <div class="engagement-back-divider"></div>
+              <a href="contact.html" class="engagement-cta-link back-cta">Get Started &rarr;</a>
+            `;
+          }
+
+          // Clear and rebuild card structure for 3D card flipping
+          card.innerHTML = `
+            <div class="engagement-card-inner">
+              <div class="engagement-card-front">${originalHTML}</div>
+              <div class="engagement-card-back">${backHTML}</div>
+            </div>
+          `;
+
+          const inner = card.querySelector('.engagement-card-inner');
+          
+          // GSAP Y-axis flip tween
+          card.addEventListener('mouseenter', () => {
+            gsap.to(inner, {
+              rotationY: 180,
+              duration: 0.8,
+              ease: 'power2.out'
+            });
+          });
+
+          card.addEventListener('mouseleave', () => {
+            gsap.to(inner, {
+              rotationY: 0,
+              duration: 0.8,
+              ease: 'power2.out'
+            });
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

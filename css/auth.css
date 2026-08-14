@@ -1,0 +1,610 @@
+/* ==========================================================================
+   STACKLY - EXACT REFERENCE REPLICA AUTH LAYOUT & STYLING
+   ========================================================================== */
+
+/* 1. Base Auth Styles */
+body.auth-page {
+  background-color: #F8FAFC !important;
+  color: #0A1124 !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Standalone Auth Screen Wrapper */
+.auth-page-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+  width: 100% !important;
+  padding: 40px 24px !important;
+  box-sizing: border-box !important;
+  background-color: #F8FAFC !important;
+}
+
+/* Centered Split Grid Card */
+.auth-container {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  width: 100% !important;
+  max-width: 1024px !important;
+  background-color: #FFFFFF !important;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 40px rgba(5, 11, 20, 0.04), 0 1px 3px rgba(5, 11, 20, 0.02) !important;
+  overflow: hidden !important;
+  align-items: stretch !important;
+  min-height: 660px !important;
+  box-sizing: border-box !important;
+}
+
+/* 2. Left Banner Column */
+.auth-banner-col {
+  position: relative !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  background-color: #050B14 !important;
+}
+
+.auth-banner-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  transition: transform 0.8s ease-in-out !important;
+}
+
+/* Subtle image zoom on hover for premium quality */
+.auth-banner-col:hover .auth-banner-img {
+  transform: scale(1.03) !important;
+}
+
+/* 3. Right Form Column */
+.auth-form-col {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding: 56px 64px !important;
+  box-sizing: border-box !important;
+  background-color: #FFFFFF !important;
+  width: 100% !important;
+}
+
+.auth-card {
+  width: 100% !important;
+  max-width: 380px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+}
+
+/* Logo placement & Inversion for White Background visibility */
+.auth-logo-link {
+  display: inline-block !important;
+  margin-bottom: 28px !important;
+  align-self: flex-start !important;
+}
+
+.auth-logo {
+  height: 30px !important;
+  width: auto !important;
+  display: block !important;
+  background: transparent !important;
+  /* Precisely maps the white logo asset to dark navy #050B14 */
+  filter: invert(7%) sepia(21%) saturate(2847%) hue-rotate(181deg) brightness(91%) contrast(97%) !important;
+}
+
+/* Typography Hierarchy */
+.auth-title {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  color: #0A1124 !important;
+  margin: 0 0 6px 0 !important;
+  letter-spacing: -0.5px !important;
+  line-height: 1.2 !important;
+}
+
+.auth-subtitle {
+  font-size: 14px !important;
+  color: #64748B !important;
+  margin: 0 0 28px 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* 4. Form Components */
+.auth-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  width: 100% !important;
+}
+
+.auth-form-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+.auth-form-label {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #0A1124 !important;
+  letter-spacing: -0.1px !important;
+}
+
+.auth-form-input {
+  height: 48px !important;
+  background-color: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  color: #0A1124 !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  outline: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.auth-form-input::placeholder {
+  color: #94A3B8 !important;
+  opacity: 1 !important;
+}
+
+.auth-form-input:focus {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 0 0 3px rgba(223, 177, 91, 0.15) !important;
+}
+
+/* Actions Row: Remember Me & Forgot Password */
+.auth-form-actions {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin-top: 4px !important;
+  box-sizing: border-box !important;
+}
+
+.auth-checkbox-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  font-size: 13px !important;
+  color: #64748B !important;
+  font-weight: 500 !important;
+}
+
+.auth-checkbox-group input[type="checkbox"] {
+  width: 16px !important;
+  height: 16px !important;
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  accent-color: #DFB15B !important;
+}
+
+.auth-link {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #2B59C3 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.auth-link:hover {
+  color: #0A1124 !important;
+}
+
+/* 5. Buttons & SSO */
+
+/* Gold Gradient Login Button */
+.auth-btn-primary {
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #050B14 !important;
+  background: linear-gradient(135deg, #DFB15B 0%, #C29640 100%) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  width: 100% !important;
+  box-shadow: 0 4px 12px rgba(223, 177, 91, 0.25) !important;
+  box-sizing: border-box !important;
+}
+
+.auth-btn-primary:hover {
+  background: linear-gradient(135deg, #E5BA66 0%, #CE9F47 100%) !important;
+  box-shadow: 0 6px 18px rgba(223, 177, 91, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.auth-btn-primary:active {
+  transform: translateY(0) !important;
+}
+
+.auth-btn-primary span.arrow {
+  font-size: 16px !important;
+  transition: transform 0.2s ease !important;
+}
+
+.auth-btn-primary:hover span.arrow {
+  transform: translateX(3px) !important;
+}
+
+/* Divider styling */
+.auth-divider {
+  display: flex !important;
+  align-items: center !important;
+  text-align: center !important;
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  margin: 16px 0 !important;
+  width: 100% !important;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '' !important;
+  flex: 1 !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+}
+
+.auth-divider span {
+  padding: 0 12px !important;
+}
+
+/* Google SSO Button (using btn-sso to avoid ad-block triggers) */
+.btn-sso {
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #0A1124 !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  width: 100% !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+}
+
+.btn-sso:hover {
+  background-color: #F8FAFC !important;
+  border-color: #CBD5E1 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(5, 11, 20, 0.03) !important;
+}
+
+.btn-sso:active {
+  transform: translateY(0) !important;
+}
+
+/* 6. Form Footer Links */
+.auth-signup-text {
+  text-align: center !important;
+  font-size: 13px !important;
+  color: #64748B !important;
+  margin: 16px 0 0 0 !important;
+  font-weight: 500 !important;
+}
+
+.auth-link-bold {
+  font-weight: 700 !important;
+  color: #2B59C3 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.auth-link-bold:hover {
+  color: #0A1124 !important;
+}
+
+.auth-back-wrapper {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 16px !important;
+}
+
+.auth-back-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #2B59C3 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease, transform 0.2s ease !important;
+}
+
+.auth-back-link:hover {
+  color: #0A1124 !important;
+  transform: translateX(-3px) !important;
+}
+
+/* Dynamic error messages matching dashboard error states */
+.auth-message {
+  padding: 12px 16px !important;
+  border-radius: 6px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  margin-bottom: 16px !important;
+  display: none;
+  box-sizing: border-box !important;
+}
+
+.auth-message.error {
+  background-color: #FEE2E2 !important;
+  color: #991B1B !important;
+  border: 1px solid #FCA5A5 !important;
+}
+
+/* ==========================================================================
+   7. RESPONSIVE MEDIA BREAKPOINTS
+   ========================================================================== */
+
+/* Tablet & Smaller Layout */
+@media (max-width: 850px) {
+  .auth-page-wrapper {
+    padding: 24px 16px !important;
+  }
+
+  .auth-container {
+    grid-template-columns: 1fr !important; /* Stack vertically (banner hidden) */
+    max-width: 480px !important;
+    min-height: auto !important;
+    border-radius: 16px !important;
+  }
+
+  .auth-banner-col {
+    display: none !important; /* Hide image banner to give focus to form */
+  }
+
+  .auth-form-col {
+    padding: 40px 32px !important;
+  }
+}
+
+/* Micro-Screens (320px - 375px) */
+@media (max-width: 375px) {
+  .auth-form-col {
+    padding: 32px 20px !important;
+  }
+
+  .auth-title {
+    font-size: 24px !important;
+  }
+
+  .auth-form-input, .auth-btn-primary, .btn-sso {
+    height: 44px !important; /* Slightly more compact for typing */
+    font-size: 13px !important;
+  }
+}
+
+/* 8. Signup Specific Layout Elements */
+.auth-form-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.auth-link-terms {
+  font-weight: 700 !important;
+  color: #2B59C3 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.auth-link-terms:hover {
+  color: #0A1124 !important;
+}
+
+@media (max-width: 576px) {
+  .auth-form-row {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+/* 9. Signup & Login Page Specific Navbar Styling and Spacing */
+body.signup-page header,
+body.signup-page header.scrolled,
+body.login-page header,
+body.login-page header.scrolled {
+  position: fixed !important;
+  background: #2a2f37 !important;
+  height: 90px !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  z-index: 1000 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  transition: none !important;
+}
+
+body.signup-page header .nav-item,
+body.login-page header .nav-item {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+body.signup-page header .nav-item:hover,
+body.signup-page header .nav-item.active,
+body.login-page header .nav-item:hover,
+body.login-page header .nav-item.active {
+  color: #FFFFFF !important;
+}
+
+body.signup-page header .login-link,
+body.login-page header .login-link {
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+body.signup-page header .login-link:hover,
+body.login-page header .login-link:hover {
+  color: #DFB15B !important;
+  border-color: #DFB15B !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.signup-page .auth-page-wrapper,
+body.login-page .auth-page-wrapper {
+  min-height: 100vh !important;
+  padding: 130px 24px 40px 24px !important;
+  box-sizing: border-box !important;
+}
+
+body.signup-page .footer-section,
+body.login-page .footer-section {
+  background-color: #2a2f37 !important;
+}
+
+@media (max-width: 768px) {
+  body.signup-page header,
+  body.signup-page header.scrolled,
+  body.login-page header,
+  body.login-page header.scrolled {
+    height: 70px !important;
+  }
+  
+  body.signup-page .auth-page-wrapper,
+  body.login-page .auth-page-wrapper {
+    min-height: 100vh !important;
+    padding: 100px 16px 30px 16px !important;
+  }
+}
+
+/* 10. Minimal entrance animations for Signup and Login pages */
+body.signup-page .auth-container,
+body.login-page .auth-container {
+  opacity: 0;
+  transform: scale(0.98);
+  animation: authContainerFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+}
+
+body.signup-page .auth-banner-col,
+body.login-page .auth-banner-col {
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: fadeInLeft 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.15s forwards !important;
+}
+
+body.signup-page .auth-form-col,
+body.login-page .auth-form-col {
+  opacity: 0;
+  transform: translateX(30px);
+  animation: fadeInRight 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.25s forwards !important;
+}
+
+@keyframes authContainerFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 11. Auth Banner Logo Overlay */
+.auth-banner-logo {
+  position: absolute !important;
+  top: 32px !important;
+  left: 32px !important;
+  z-index: 10 !important;
+}
+
+.auth-banner-logo img {
+  height: 56px !important;
+  width: auto !important;
+  display: block !important;
+  background: transparent !important;
+}
+
+/* 12. Footer Link Hover Arrow Interaction */
+body.signup-page .footer-link,
+body.login-page .footer-link {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  transition: all 0.3s ease !important;
+}
+
+body.signup-page .footer-link::before,
+body.login-page .footer-link::before {
+  content: "\2192" !important; /* Unicode for arrow (→) */
+  color: #d5a959 !important;
+  opacity: 0 !important;
+  margin-right: -5px !important;
+  transform: translateX(-5px) !important;
+  display: inline-block !important;
+  transition: opacity 0.3s ease, transform 0.3s ease, margin-right 0.3s ease !important;
+  font-weight: bold !important;
+}
+
+body.signup-page .footer-link:hover::before,
+body.login-page .footer-link:hover::before {
+  opacity: 1 !important;
+  margin-right: 6px !important;
+  transform: translateX(0) !important;
+}
+
+/* 13. Auth Form Custom Dropdown Styling Override */
+.auth-form-select-wrapper {
+  margin-top: 6px !important;
+  box-sizing: border-box !important;
+}
+
+.auth-form-select-wrapper .custom-select-trigger {
+  height: 48px !important;
+  background-color: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  color: #0A1124 !important;
+}
+
+.auth-form-select-wrapper.open .custom-select-trigger {
+  border-color: #CBD5E1 !important;
+  background-color: #FFFFFF !important;
+  box-shadow: 0 0 0 3px rgba(223, 177, 91, 0.15) !important;
+}
+
+.auth-form-select-wrapper .custom-select-menu {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 8px !important;
+}
+
