@@ -119,6 +119,9 @@
 
     // Navigation function
     const navigate = () => {
+      // Mark that we are doing an internal page transition so the
+      // next page's initial-load preloader is suppressed (avoiding double-play)
+      try { sessionStorage.setItem('stackly_transitioning', '1'); } catch(e) {}
       window.location.href = targetUrl;
     };
 
@@ -245,27 +248,91 @@
   }
 
   // 6. INITIALIZATION & LIFECYCLE LISTENERS FOR BACK/FORWARD CACHE (BFCache)
+  let isInitialAnimating = false; // Guard flag: prevents lifecycle events from killing the opening animation
+
   document.addEventListener('DOMContentLoaded', () => {
     initPreloaderDOM();
     setupLinkInterception();
-    hideAndResetPreloader();
+
+    // If arriving via an internal link transition, skip initial-load preloader
+    // (the transition preloader already played on the previous page)
+    let fromTransition = false;
+    try {
+      fromTransition = sessionStorage.getItem('stackly_transitioning') === '1';
+      sessionStorage.removeItem('stackly_transitioning');
+    } catch(e) {}
+
+    if (fromTransition) {
+      // Already showed preloader during navigation — just ensure it is hidden
+      hideAndResetPreloader();
+      return;
+    }
+
+    // Show initial page-load preloader then auto-dismiss after 2000ms total
+    isInitialAnimating = true;
+    const initStartTime = Date.now();
+    createParticles();
+    preloader.classList.add('active');
+
+    // Ensures the preloader is visible for at least 2000ms regardless of animation length
+    const finishInitial = () => {
+      const elapsed = Date.now() - initStartTime;
+      const remaining = Math.max(0, 2000 - elapsed);
+      setTimeout(() => {
+        isInitialAnimating = false;
+        hideAndResetPreloader();
+      }, remaining);
+    };
+
+    if (typeof gsap !== 'undefined') {
+      gsap.set(preloader, { opacity: 1, visibility: 'visible', pointerEvents: 'all' });
+      gsap.set(currencyWrapper, { scale: 0.5, opacity: 0, x: 0, y: 0 });
+      gsap.set(logo, { scale: 0.8, opacity: 0 });
+      const particleEls = particlesContainer ? particlesContainer.querySelectorAll('.currency-particle') : [];
+      gsap.set(particleEls, { opacity: 0, x: 0, y: 0, scale: 0.5, rotation: 0 });
+
+      const initTl = gsap.timeline({ onComplete: finishInitial });
+
+      initTl.to(currencyWrapper, { duration: 0.28, scale: 1.1, opacity: 1, ease: 'power3.out' });
+      initTl.to(logo, { duration: 0.2, scale: 1.05, opacity: 1, ease: 'back.out(1.7)' }, '-=0.15');
+      initTl.to(currencyWrapper, { duration: 0.22, scale: 1.35, opacity: 0, ease: 'power2.in' });
+
+      particleEls.forEach((p, idx) => {
+        const angle = (idx / particleEls.length) * Math.PI * 2 + (Math.random() * 0.4 - 0.2);
+        const distance = 80 + Math.random() * 110;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        const rot = (Math.random() - 0.5) * 360;
+        initTl.to(p, { duration: 0.35, x: tx, y: ty, scale: 0.8 + Math.random() * 0.6, rotation: rot, opacity: 1, ease: 'power3.out' }, '-=0.28');
+        initTl.to(p, { duration: 0.15, opacity: 0, scale: 0.2, ease: 'power1.in' }, '-=0.1');
+      });
+
+      initTl.to(logo, { duration: 0.18, scale: 1.12, opacity: 0.8, ease: 'power2.out' }, '-=0.2');
+
+      // Safety fallback — force finish after 3500ms regardless
+      setTimeout(() => { if (isInitialAnimating) finishInitial(); }, 3500);
+    } else {
+      // No GSAP: hold for full 2000ms then hide
+      setTimeout(finishInitial, 2000);
+    }
   });
 
-  // Pageshow event catches both initial load AND restoration from BFCache (Back/Forward buttons)
-  window.addEventListener('pageshow', (event) => {
-    hideAndResetPreloader();
+  // Pageshow catches BFCache restores — skip if initial animation is still running
+  window.addEventListener('pageshow', () => {
+    if (!isInitialAnimating) hideAndResetPreloader();
   });
 
-  // Popstate event catches History Back/Forward navigation
+  // Popstate catches History Back/Forward — skip if initial animation is still running
   window.addEventListener('popstate', () => {
-    hideAndResetPreloader();
+    if (!isInitialAnimating) hideAndResetPreloader();
   });
 
-  // Visibilitychange catches tab switching / restored sessions
+  // Visibilitychange catches tab switching — skip if initial animation is still running
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') {
+    if (!isInitialAnimating && document.visibilityState === 'visible') {
       hideAndResetPreloader();
     }
   });
 
 })();
+
