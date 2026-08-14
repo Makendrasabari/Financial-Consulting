@@ -423,6 +423,11 @@
   align-items: center;
 }
 
+.pick-image-wrapper {
+  overflow: hidden;
+  border-radius: var(--border-radius-md);
+}
+
 .blog-pick-img {
   width: 100%;
   border-radius: var(--border-radius-md);

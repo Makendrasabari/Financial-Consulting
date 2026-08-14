@@ -118,7 +118,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary-gold);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 3px;
   margin-bottom: 24px;
 }
 
@@ -128,6 +128,19 @@ h1, h2, h3, h4, h5, h6 {
   width: 20px;
   height: 1px;
   background-color: var(--primary-gold);
+}
+
+/* Centering support for gold labels inside centered section headers */
+.get-started-section .label-gold,
+.matters-header .label-gold,
+.deliver-header .label-gold,
+.method-header .label-gold,
+.fresh-header .label-gold,
+.faq-header .label-gold,
+.inspired-content .label-gold,
+.newsletter-content .label-gold,
+.text-center .label-gold {
+  justify-content: center;
 }
 
 /* HEADER & NAVIGATION */

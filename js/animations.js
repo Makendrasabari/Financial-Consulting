@@ -1,28 +1,53 @@
 /* STACKLY - Scroll Reveals & Graph Animations */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Scroll reveal for elements
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  // 1. Scroll reveal for elements (supporting standard, left, and right reveal variants)
+  const revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-on-scroll-left, .reveal-on-scroll-right');
+  const graphCards = document.querySelectorAll('.results-graph-card');
 
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('revealed');
-          // Once revealed, no need to track it further
           observer.unobserve(entry.target);
         }
       });
     }, {
-      root: null, // viewport
-      threshold: 0.15, // trigger when 15% of element is visible
-      rootMargin: '0px 0px -50px 0px' // offset bottom to prevent premature triggering
+      root: null,
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // Observer for live running of results graph card
+    if (graphCards.length > 0) {
+      const graphObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const card = entry.target;
+            const path = card.querySelector('.graph-line-path');
+            const dots = card.querySelectorAll('.graph-dot');
+            if (path) path.classList.add('active');
+            dots.forEach(dot => dot.classList.add('active'));
+            observer.unobserve(card);
+          }
+        });
+      }, {
+        threshold: 0.2
+      });
+      graphCards.forEach(card => graphObserver.observe(card));
+    }
   } else {
-    // Fallback: reveal all immediately if IntersectionObserver is not supported
+    // Fallback: reveal and activate all immediately
     revealElements.forEach(el => el.classList.add('revealed'));
+    graphCards.forEach(card => {
+      const path = card.querySelector('.graph-line-path');
+      const dots = card.querySelectorAll('.graph-dot');
+      if (path) path.classList.add('active');
+      dots.forEach(dot => dot.classList.add('active'));
+    });
   }
 
   // 2. SVG Line and Donut Graph triggers on scroll
@@ -454,6 +479,347 @@ document.addEventListener('DOMContentLoaded', () => {
           ease: 'power2.out'
         }, '-=1.2');
       }
+    }
+
+    // 10. Live Count-Up Animation for Stat Numbers (.stat-num) on Services page
+    const statNums = document.querySelectorAll('.stat-num');
+    if (statNums.length > 0) {
+      statNums.forEach(stat => {
+        const target = parseFloat(stat.getAttribute('data-target')) || 0;
+        const suffix = stat.getAttribute('data-suffix') || '';
+        const obj = { val: 0 };
+
+        gsap.to(obj, {
+          val: target,
+          duration: 2.0,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: stat,
+            start: 'top 90%',
+            toggleActions: 'restart none none reset'
+          },
+          onUpdate: () => {
+            stat.textContent = Math.floor(obj.val) + suffix;
+          }
+        });
+      });
+    }
+
+    // 11. Custom staggered reveal (Image -> Title -> Description) for Deliverables Cards (.deliver-card)
+    const deliverCards = document.querySelectorAll('.deliver-card');
+    if (deliverCards.length > 0) {
+      deliverCards.forEach(card => {
+        const bg = card.querySelector('.deliver-card-bg');
+        const title = card.querySelector('.deliver-card-content h3');
+        const desc = card.querySelector('.deliver-card-content p');
+
+        // Set initial states to prevent flashing
+        gsap.set(bg, { 
+          opacity: 0, 
+          scale: 1.08, 
+          clipPath: 'polygon(0% 100%, 0% 100%, 100% 100%, 100% 100%)' 
+        });
+        gsap.set(title, { opacity: 0, x: -30 });
+        gsap.set(desc, { opacity: 0, y: 20 });
+
+        // Coordinated animation timeline for this specific card
+        const cardTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'restart reset restart reset'
+          }
+        });
+
+        cardTl.to(bg, {
+          opacity: 1,
+          scale: 1,
+          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+          duration: 1.2,
+          ease: 'power2.out'
+        })
+        .to(title, {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: 'power2.out'
+        }, '-=0.8')
+        .to(desc, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out'
+        }, '-=0.6');
+      });
+    }
+
+    // 12. Custom staggered reveal for Method Steps (Center card first, then left/right simultaneously)
+    const methodSection = document.querySelector('.services-method-section');
+    const methodSteps = document.querySelectorAll('.method-step');
+    if (methodSection && methodSteps.length === 3) {
+      // Set initial states to prevent flashing
+      gsap.set(methodSteps, { opacity: 0, y: 40 });
+
+      const methodTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: methodSection,
+          start: 'top 75%',
+          toggleActions: 'restart reset restart reset'
+        }
+      });
+
+      // 1. Center card (index 1) animates up first
+      methodTl.to(methodSteps[1], {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+      })
+      // 2. Left (index 0) and Right (index 2) cards animate in simultaneously
+      .to([methodSteps[0], methodSteps[2]], {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+      }, '+=0.1');
+    }
+
+    // 13. Editor's Pick Animation (Image reveal + left-to-right slide, Content right-to-left staggered slide)
+    const pickSection = document.querySelector('.blog-pick-section');
+    if (pickSection) {
+      const img = pickSection.querySelector('.blog-pick-img');
+      const content = pickSection.querySelector('.pick-content');
+      const contentItems = content ? content.children : [];
+
+      // Set initial states to prevent flashing
+      gsap.set(img, { 
+        opacity: 0, 
+        x: -60, 
+        scale: 1.08, 
+        clipPath: 'polygon(0% 100%, 0% 100%, 100% 100%, 100% 100%)' 
+      });
+      if (contentItems.length > 0) {
+        gsap.set(contentItems, { opacity: 0, x: 60 });
+      }
+
+      const pickTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: pickSection,
+          start: 'top 75%',
+          toggleActions: 'restart reset restart reset'
+        }
+      });
+
+      // 1. Animate left-side image (reveal + slide left-to-right)
+      pickTl.to(img, {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        duration: 1.2,
+        ease: 'power2.out'
+      })
+      // 2. Animate right-side content items (slide right-to-left staggered)
+      .to(contentItems, {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        stagger: 0.1
+      }, '-=0.8');
+    }
+
+    // 14. Fresh Perspectives Cards Shuffle Animation (Scattered -> Converge/Overlap -> Settle)
+    const freshSection = document.querySelector('.blog-fresh-section');
+    const freshCards = document.querySelectorAll('.fresh-card');
+    if (freshSection && freshCards.length === 3) {
+      // Set initial scattered/shuffled states
+      gsap.set(freshCards[0], { x: 160, y: 30, rotation: -8, opacity: 0, scale: 0.9 });
+      gsap.set(freshCards[1], { x: 0, y: 100, rotation: 5, opacity: 0, scale: 0.9 });
+      gsap.set(freshCards[2], { x: -160, y: -30, rotation: -6, opacity: 0, scale: 0.9 });
+
+      const shuffleTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: freshSection,
+          start: 'top 75%',
+          toggleActions: 'restart reset restart reset'
+        }
+      });
+
+      // Step 1: Converge close to center with subtle overlap
+      shuffleTl.to(freshCards[0], { x: 30, y: 10, rotation: 2, opacity: 0.8, scale: 0.95, duration: 0.7, ease: 'power2.out' })
+               .to(freshCards[1], { x: 0, y: 20, rotation: -3, opacity: 0.8, scale: 0.95, duration: 0.7, ease: 'power2.out' }, '-=0.7')
+               .to(freshCards[2], { x: -30, y: -10, rotation: 4, opacity: 0.8, scale: 0.95, duration: 0.7, ease: 'power2.out' }, '-=0.7')
+               
+      // Step 2: Shuffle and settle each card back to its exact grid layout position
+               .to(freshCards[0], { x: 0, y: 0, rotation: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.1)' }, '+=0.15')
+               .to(freshCards[1], { x: 0, y: 0, rotation: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.1)' }, '-=0.6')
+               .to(freshCards[2], { x: 0, y: 0, rotation: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.1)' }, '-=0.6');
+    }
+
+    // 15. Custom staggered reveal for About Core Values (Center card first, then left/right simultaneously)
+    const mattersSec = document.querySelector('.about-matters-section');
+    const mattersCards = document.querySelectorAll('.matter-card');
+    if (mattersSec && mattersCards.length === 3) {
+      // Set initial states to prevent flashing
+      gsap.set(mattersCards, { opacity: 0, y: 40 });
+
+      const mattersTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: mattersSec,
+          start: 'top 75%',
+          toggleActions: 'restart reset restart reset'
+        }
+      });
+
+      // 1. Center card (index 1, Resilience) animates up first
+      mattersTl.to(mattersCards[1], {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+      })
+      // 2. Left (index 0, Objectivity) and Right (index 2, Conviction) cards animate in simultaneously
+      .to([mattersCards[0], mattersCards[2]], {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+      }, '+=0.1');
+    }
+
+    // 16. Operating Principles Cards Shuffle Animation (Scattered -> Converge/Overlap -> Settle)
+    const principlesSec = document.querySelector('.principles-section');
+    const principleCards = document.querySelectorAll('.principle-card');
+    if (principlesSec && principleCards.length === 8) {
+      // Set initial scattered/shuffled states
+      gsap.set(principleCards[0], { x: 200, y: 80, rotation: -6, opacity: 0, scale: 0.9 });
+      gsap.set(principleCards[1], { x: 80, y: 120, rotation: 5, opacity: 0, scale: 0.9 });
+      gsap.set(principleCards[2], { x: -80, y: 120, rotation: -4, opacity: 0, scale: 0.9 });
+      gsap.set(principleCards[3], { x: -200, y: 80, rotation: 7, opacity: 0, scale: 0.9 });
+      gsap.set(principleCards[4], { x: 200, y: -80, rotation: 4, opacity: 0, scale: 0.9 });
+      gsap.set(principleCards[5], { x: 80, y: -120, rotation: -5, opacity: 0, scale: 0.9 });
+      gsap.set(principleCards[6], { x: -80, y: -120, rotation: 3, opacity: 0, scale: 0.9 });
+      gsap.set(principleCards[7], { x: -200, y: -80, rotation: -8, opacity: 0, scale: 0.9 });
+
+      const principlesTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: principlesSec,
+          start: 'top 75%',
+          toggleActions: 'restart reset restart reset'
+        }
+      });
+
+      // Step 1: Converge close to center with subtle overlap
+      principlesTl.to(principleCards[0], { x: 30, y: 10, rotation: 2, opacity: 0.8, scale: 0.95, duration: 0.7, ease: 'power2.out' })
+                  .to(principleCards[1], { x: 10, y: 15, rotation: -3, opacity: 0.8, scale: 0.95, duration: 0.7, ease: 'power2.out' }, '-=0.7')
+                  .to(principleCards[2], { x: -10, y: 15, rotation: 1, opacity: 0.8, scale: 0.95, duration: 0.7, ease: 'power2.out' }, '-=0.7')
+                  .to(principleCards[3], { x: -30, y: 10, rotation: -2, opacity: 0.8, scale: 0.95, duration: 0.7, ease: 'power2.out' }, '-=0.7')
+                  .to(principleCards[4], { x: 30, y: -10, rotation: 3, opacity: 0.8, scale: 0.95, duration: 0.7, ease: 'power2.out' }, '-=0.7')
+                  .to(principleCards[5], { x: 10, y: -15, rotation: -1, opacity: 0.8, scale: 0.95, duration: 0.7, ease: 'power2.out' }, '-=0.7')
+                  .to(principleCards[6], { x: -10, y: -15, rotation: 2, opacity: 0.8, scale: 0.95, duration: 0.7, ease: 'power2.out' }, '-=0.7')
+                  .to(principleCards[7], { x: -30, y: -10, rotation: -3, opacity: 0.8, scale: 0.95, duration: 0.7, ease: 'power2.out' }, '-=0.7')
+                  
+      // Step 2: Shuffle and settle each card back to its exact grid layout position
+                  .to(principleCards, {
+                    x: 0,
+                    y: 0,
+                    rotation: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.8,
+                    ease: 'back.out(1.1)',
+                    stagger: 0.08
+                  }, '+=0.15');
+    }
+
+    // 17. Contact Page Let's Connect Animation (Content top-to-bottom, Image bottom-to-top + reveal)
+    const connectSec = document.querySelector('.contact-connect-section');
+    if (connectSec) {
+      const content = connectSec.querySelector('.connect-content');
+      const items = content ? content.children : [];
+      const img = connectSec.querySelector('.contact-connect-img');
+
+      // Set initial states to prevent flashing
+      gsap.set(items, { opacity: 0, y: -40 });
+      gsap.set(img, { 
+        opacity: 0, 
+        y: 60, 
+        scale: 1.08, 
+        clipPath: 'polygon(0% 100%, 0% 100%, 100% 100%, 100% 100%)' 
+      });
+
+      const connectTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: connectSec,
+          start: 'top 75%',
+          toggleActions: 'restart reset restart reset'
+        }
+      });
+
+      // 1. Animate left-side content (top to bottom staggered)
+      connectTl.to(items, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        stagger: 0.1
+      })
+      // 2. Animate right-side image (bottom to top + cinematic zoom reveal)
+      .to(img, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        duration: 1.2,
+        ease: 'power2.out'
+      }, '-=0.6');
+    }
+
+    // 18. Contact Page Quick Contact Cards Animation (First/Last first, then middle two outward rotating slide)
+    const quickSection = document.querySelector('.contact-quick-section');
+    const quickCards = document.querySelectorAll('.quick-card');
+    if (quickSection && quickCards.length === 4) {
+      // Set initial states
+      gsap.set([quickCards[0], quickCards[3]], { opacity: 0, y: 40 });
+      gsap.set(quickCards[1], { x: 120, y: 0, rotation: -6, opacity: 0, scale: 0.9 });
+      gsap.set(quickCards[2], { x: -120, y: 0, rotation: 6, opacity: 0, scale: 0.9 });
+
+      const quickTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: quickSection,
+          start: 'top 80%',
+          toggleActions: 'restart reset restart reset'
+        }
+      });
+
+      // 1. Animate first and last cards smoothly into position
+      quickTl.to([quickCards[0], quickCards[3]], {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        stagger: 0.15
+      })
+      // 2. Animate the two middle cards outward from center, rotating and settling
+      .to(quickCards[1], {
+        x: 0,
+        y: 0,
+        rotation: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.85,
+        ease: 'power2.out'
+      }, '+=0.1')
+      .to(quickCards[2], {
+        x: 0,
+        y: 0,
+        rotation: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.85,
+        ease: 'power2.out'
+      }, '-=0.85');
     }
 
     // Refresh ScrollTrigger positions after page fully loads (handles image dimensions shifts)

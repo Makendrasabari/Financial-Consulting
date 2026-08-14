@@ -265,7 +265,7 @@
 
 /* OPERATING PRINCIPLES SECTION */
 .principles-section {
-  padding: 120px 0;
+  padding: 120px 0 30px 0;
   background-color: var(--bg-light);
   color: var(--text-dark-primary);
   border-top: 1px solid #F1F5F9;
@@ -321,7 +321,7 @@
 
 /* LEADERSHIP SECTION */
 .leadership-section {
-  padding: 120px 0;
+  padding: 30px 0 120px 0;
   background-color: var(--bg-light);
   color: var(--text-dark-primary);
   border-top: 1px solid #F1F5F9;
@@ -619,19 +619,60 @@
 }
 
 .matter-card {
+  position: relative;
   background-color: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--border-radius-md);
   padding: 48px 40px;
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.matter-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: -1;
+}
+
+.matter-card-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(5, 11, 20, 0.95) 0%, rgba(5, 11, 20, 0.85) 100%);
+  transition: opacity 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  opacity: 1;
 }
 
 .matter-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.02);
   border-color: var(--primary-gold);
-  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.matter-card:hover .matter-card-bg {
+  opacity: 1;
+}
+
+.matter-card:hover .matter-card-bg::before {
+  opacity: 0;
+}
+
+.matter-icon {
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.4s ease;
 }
 
 .matter-icon svg {
@@ -641,16 +682,28 @@
 }
 
 .matter-card h3 {
+  position: relative;
+  z-index: 2;
   font-size: 20px;
   font-weight: 700;
   color: #FFFFFF;
   margin-bottom: 12px;
+  transition: opacity 0.4s ease;
 }
 
 .matter-card p {
+  position: relative;
+  z-index: 2;
   font-size: 15px;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
+  transition: opacity 0.4s ease;
+}
+
+.matter-card:hover .matter-icon,
+.matter-card:hover h3,
+.matter-card:hover p {
+  opacity: 0;
 }
 
 /* Looking Ahead Section */

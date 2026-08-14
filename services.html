@@ -427,21 +427,21 @@
         <h2>What We Deliver</h2>
       </div>
       <div class="deliver-grid">
-        <div class="deliver-card reveal-on-scroll">
+        <div class="deliver-card">
           <div class="deliver-card-bg" style="background-image: url('assets/services_deliver1.webp');"></div>
           <div class="deliver-card-content">
             <h3>Capital Structure Optimization</h3>
             <p>Custom designs for asset allocation, M&A preparation, and debt restructuring plans.</p>
           </div>
         </div>
-        <div class="deliver-card reveal-on-scroll delay-100">
+        <div class="deliver-card">
           <div class="deliver-card-bg" style="background-image: url('assets/services_deliver2.webp');"></div>
           <div class="deliver-card-content">
             <h3>Strategic Market Entry Reports</h3>
             <p>Deep quantitative assessments of entry dynamics, regulatory bounds, and risk matrices.</p>
           </div>
         </div>
-        <div class="deliver-card reveal-on-scroll delay-200">
+        <div class="deliver-card">
           <div class="deliver-card-bg" style="background-image: url('assets/services_deliver3.webp');"></div>
           <div class="deliver-card-content">
             <h3>Risk Control Protocols</h3>
@@ -460,17 +460,17 @@
         <h2>Our Method</h2>
       </div>
       <div class="method-grid">
-        <div class="method-step reveal-on-scroll">
+        <div class="method-step">
           <div class="step-number">01</div>
           <h3>Understand</h3>
           <p>We map your current position, constraints, and long-term targets.</p>
         </div>
-        <div class="method-step reveal-on-scroll delay-100">
+        <div class="method-step">
           <div class="step-number">02</div>
           <h3>Create</h3>
           <p>We build models, stress-test hypotheses, and formulate custom strategies.</p>
         </div>
-        <div class="method-step reveal-on-scroll delay-200">
+        <div class="method-step">
           <div class="step-number">03</div>
           <h3>Deliver</h3>
           <p>We roll out execution protocols and provide ongoing oversight.</p>
@@ -482,28 +482,59 @@
   <!-- New Section 3: Built for Results -->
   <section class="services-results-section">
     <div class="container services-results-grid">
-      <div class="results-content reveal-on-scroll">
+      <div class="results-content reveal-on-scroll-left">
         <span class="label-gold">Outcomes</span>
         <h2>Built for Results</h2>
         <p>Our metrics speak for themselves. We align advisory with execution to build real, scalable growth.</p>
         <div class="results-stats">
           <div class="result-stat-item">
-            <div class="stat-num">150+</div>
+            <div class="stat-num" data-target="150" data-suffix="+">0+</div>
             <div class="stat-lbl">M&A Deals Executed</div>
           </div>
           <div class="result-stat-item">
-            <div class="stat-num">98%</div>
+            <div class="stat-num" data-target="98" data-suffix="%">0%</div>
             <div class="stat-lbl">Retainer Retention Rate</div>
           </div>
           <div class="result-stat-item">
-            <div class="stat-num">12x</div>
+            <div class="stat-num" data-target="12" data-suffix="x">0x</div>
             <div class="stat-lbl">Value-to-Fee Ratio</div>
           </div>
         </div>
         <a href="404.html" class="btn-primary">Schedule Call &rarr;</a>
       </div>
-      <div class="results-image-wrapper reveal-on-scroll delay-200">
-        <img src="assets/services_results.webp" alt="Growth metrics and results representation" class="services-results-img">
+      <div class="results-graph-card reveal-on-scroll-right">
+        <div class="graph-card-bg" style="background-image: url('assets/services_results_bg.webp');"></div>
+        <div class="graph-svg-container">
+          <svg viewBox="0 0 500 300" class="live-graph-svg">
+            <!-- Grid lines -->
+            <line x1="50" y1="50" x2="450" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+            <line x1="50" y1="120" x2="450" y2="120" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+            <line x1="50" y1="190" x2="450" y2="190" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+            <line x1="50" y1="260" x2="450" y2="260" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+            
+            <!-- Animated Graph Path -->
+            <path d="M 50 250 L 130 180 L 210 210 L 290 100 L 370 130 L 450 40" 
+                  fill="none" 
+                  stroke="url(#graphGoldGrad)" 
+                  stroke-width="4" 
+                  class="graph-line-path" />
+                  
+            <!-- Animated Dots -->
+            <circle cx="50" cy="250" r="6" class="graph-dot dot-1" />
+            <circle cx="130" cy="180" r="6" class="graph-dot dot-2" />
+            <circle cx="210" cy="210" r="6" class="graph-dot dot-3" />
+            <circle cx="290" cy="100" r="6" class="graph-dot dot-4" />
+            <circle cx="370" cy="130" r="6" class="graph-dot dot-5" />
+            <circle cx="450" cy="40" r="6" class="graph-dot dot-6" />
+
+            <defs>
+              <linearGradient id="graphGoldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#DFB15B" />
+                <stop offset="100%" stop-color="#00C6FF" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
       </div>
     </div>
   </section>

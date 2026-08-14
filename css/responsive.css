@@ -77,13 +77,13 @@
   }
 
   .mc-retention {
-    bottom: 10%;
-    left: -2%;
+    bottom: 28%;
+    left: 2%;
   }
 
   .ai-insight-card {
-    bottom: 5%;
-    right: 5%;
+    bottom: 3%;
+    right: 2%;
   }
 
   .services-grid {
@@ -440,12 +440,12 @@
   }
 
   .mc-retention {
-    bottom: 12%;
-    left: -2%;
+    bottom: 28%;
+    left: 2%;
   }
 
   .ai-insight-card {
-    bottom: 2%;
+    bottom: 3%;
     right: 2%;
   }
 }

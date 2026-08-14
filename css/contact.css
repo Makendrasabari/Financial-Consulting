@@ -373,6 +373,11 @@
   align-items: center;
 }
 
+.connect-image-wrapper {
+  overflow: hidden;
+  border-radius: var(--border-radius-md);
+}
+
 .contact-connect-img {
   width: 100%;
   border-radius: var(--border-radius-md);
@@ -525,7 +530,7 @@ a.quick-value:hover {
 }
 
 .faq-item[open] .faq-question::after {
-  content: "\u2212";
+  content: "\2212";
 }
 
 .faq-question:hover {
