@@ -551,3 +551,180 @@
     left: -35px;
   }
 }
+
+/* ==========================================================================
+   NEW SECTIONS STYLING
+   ========================================================================== */
+
+/* Our Approach Section */
+.about-approach-section {
+  padding: 120px 0;
+  background-color: var(--bg-light);
+  color: var(--text-dark-primary);
+  border-top: 1px solid #E2E8F0;
+}
+
+.about-approach-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.about-approach-img {
+  width: 100%;
+  border-radius: var(--border-radius-md);
+  aspect-ratio: 1.6;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(10, 17, 36, 0.04);
+}
+
+.approach-content h2 {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--text-dark-primary);
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.approach-content p {
+  font-size: 16px;
+  color: var(--text-dark-secondary);
+  line-height: 1.7;
+}
+
+/* What Matters to Us Section */
+.about-matters-section {
+  padding: 120px 0;
+  background-color: #050B14;
+  color: #FFFFFF;
+}
+
+.matters-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.matters-header h2 {
+  font-size: 38px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -1px;
+}
+
+.matters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.matter-card {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--border-radius-md);
+  padding: 48px 40px;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.matter-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-gold);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.matter-icon svg {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 24px;
+}
+
+.matter-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+}
+
+.matter-card p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+/* Looking Ahead Section */
+.about-ahead-section {
+  padding: 120px 0;
+  background-color: var(--bg-light);
+  color: var(--text-dark-primary);
+  border-top: 1px solid #E2E8F0;
+}
+
+.about-ahead-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.about-ahead-img {
+  width: 100%;
+  border-radius: var(--border-radius-md);
+  aspect-ratio: 1.6;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(10, 17, 36, 0.04);
+}
+
+.ahead-content h2 {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--text-dark-primary);
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.ahead-content p {
+  font-size: 16px;
+  color: var(--text-dark-secondary);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+/* Responsive Overrides for New Sections */
+@media (max-width: 1024px) {
+  .about-approach-grid,
+  .about-ahead-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .about-ahead-grid .ahead-image-wrapper {
+    order: 2;
+  }
+  
+  .matters-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-approach-section,
+  .about-matters-section,
+  .about-ahead-section {
+    padding: 80px 0;
+  }
+  
+  .approach-content h2,
+  .matters-header h2,
+  .ahead-content h2 {
+    font-size: 30px;
+  }
+  
+  .matters-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
