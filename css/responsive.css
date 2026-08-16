@@ -290,6 +290,12 @@
     align-items: center;
   }
 
+  .hero-content .label-gold {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
   .hero-title {
     font-size: 42px;
   }
@@ -362,17 +368,37 @@
   }
 
   .metric-card {
-    padding: 12px 16px;
+    padding: 8px 12px;
   }
 
   .metric-value {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  .metric-label {
+    font-size: 9px;
+    letter-spacing: 0.2px;
+  }
+
+  .mc-portfolio {
+    top: 5%;
+    left: 2%;
+  }
+
+  .mc-capital {
+    top: 35%;
+    right: 2%;
+  }
+
+  .mc-retention {
+    bottom: 30%;
+    left: 2%;
   }
 
   .ai-insight-card {
     width: 170px;
     padding: 16px;
-    bottom: 5%;
+    bottom: 2%;
     right: 2%;
   }
 
@@ -427,26 +453,6 @@
 
   .hero-visual {
     height: 350px;
-  }
-
-  .mc-portfolio {
-    top: 5%;
-    left: 2%;
-  }
-
-  .mc-capital {
-    top: 35%;
-    right: 2%;
-  }
-
-  .mc-retention {
-    bottom: 28%;
-    left: 2%;
-  }
-
-  .ai-insight-card {
-    bottom: 3%;
-    right: 2%;
   }
 }
 

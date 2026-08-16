@@ -6,6 +6,8 @@
   let preloader, currencyWrapper, logo, particlesContainer;
   let isNavigating = false;
   let navigationTimeout = null;
+  let transitionTimeline = null;
+  let initialTimeline = null;
 
   // 1. Ensure Preloader Overlay DOM exists
   function initPreloaderDOM() {
@@ -56,6 +58,14 @@
     if (navigationTimeout) {
       clearTimeout(navigationTimeout);
       navigationTimeout = null;
+    }
+    if (transitionTimeline) {
+      transitionTimeline.kill();
+      transitionTimeline = null;
+    }
+    if (initialTimeline) {
+      initialTimeline.kill();
+      initialTimeline = null;
     }
 
     if (!preloader) {
@@ -127,8 +137,11 @@
 
     if (typeof gsap !== 'undefined') {
       gsap.killTweensOf([preloader, currencyWrapper, logo]);
+      if (transitionTimeline) {
+        transitionTimeline.kill();
+      }
       
-      const tl = gsap.timeline({
+      transitionTimeline = gsap.timeline({
         onComplete: navigate
       });
 
@@ -291,7 +304,11 @@
       const particleEls = particlesContainer ? particlesContainer.querySelectorAll('.currency-particle') : [];
       gsap.set(particleEls, { opacity: 0, x: 0, y: 0, scale: 0.5, rotation: 0 });
 
-      const initTl = gsap.timeline({ onComplete: finishInitial });
+      if (initialTimeline) {
+        initialTimeline.kill();
+      }
+      initialTimeline = gsap.timeline({ onComplete: finishInitial });
+      const initTl = initialTimeline;
 
       initTl.to(currencyWrapper, { duration: 0.28, scale: 1.1, opacity: 1, ease: 'power3.out' });
       initTl.to(logo, { duration: 0.2, scale: 1.05, opacity: 1, ease: 'back.out(1.7)' }, '-=0.15');
@@ -317,19 +334,30 @@
     }
   });
 
-  // Pageshow catches BFCache restores — skip if initial animation is still running
-  window.addEventListener('pageshow', () => {
-    if (!isInitialAnimating) hideAndResetPreloader();
+  // Pageshow catches BFCache restores
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      isInitialAnimating = false;
+      hideAndResetPreloader();
+    } else if (!isInitialAnimating) {
+      hideAndResetPreloader();
+    }
   });
 
-  // Popstate catches History Back/Forward — skip if initial animation is still running
+  // Popstate catches History Back/Forward
   window.addEventListener('popstate', () => {
-    if (!isInitialAnimating) hideAndResetPreloader();
+    isInitialAnimating = false;
+    hideAndResetPreloader();
   });
 
-  // Visibilitychange catches tab switching — skip if initial animation is still running
+  // Pagehide cleans up timers before going to BFCache
+  window.addEventListener('pagehide', () => {
+    hideAndResetPreloader();
+  });
+
+  // Visibilitychange catches tab switching
   document.addEventListener('visibilitychange', () => {
-    if (!isInitialAnimating && document.visibilityState === 'visible') {
+    if (document.visibilityState === 'visible' && !isInitialAnimating) {
       hideAndResetPreloader();
     }
   });
