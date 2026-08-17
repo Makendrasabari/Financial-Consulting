@@ -372,7 +372,7 @@
   </section>
 
   <!-- Section 4: Engagement Models Section -->
-  <section class="engagement-section">
+  <section id="engagement-models" class="engagement-section">
     <div class="container">
       <div class="engagement-header reveal-on-scroll">
         <span class="label-gold">Engagement Models</span>
@@ -872,6 +872,8 @@
           if (backBtn) {
             backBtn.addEventListener('click', (e) => {
               e.stopPropagation();
+              // Save scroll target for restoration when coming back
+              sessionStorage.setItem('scrollTarget', '#engagement-models');
               // Standard link navigation to 404.html will take place
             });
           }
@@ -925,6 +927,19 @@
             }
           });
         });
+
+        // Restore scroll position to Engagement Models if navigating back from Talk to Advisor
+        const scrollTarget = sessionStorage.getItem('scrollTarget');
+        if (scrollTarget) {
+          sessionStorage.removeItem('scrollTarget');
+          // Delay slightly to allow dynamic card layouts and GSAP animations to settle
+          setTimeout(() => {
+            const targetEl = document.querySelector(scrollTarget);
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 300);
+        }
       }
     });
   </script>

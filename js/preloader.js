@@ -144,6 +144,7 @@
       transitionTimeline = gsap.timeline({
         onComplete: navigate
       });
+      const tl = transitionTimeline;
 
       // Reset initial state
       gsap.set(preloader, { opacity: 1, visibility: 'visible', pointerEvents: 'all' });
@@ -276,7 +277,15 @@
     } catch(e) {}
 
     if (fromTransition) {
-      // Already showed preloader during navigation — just ensure it is hidden
+      // Already showed preloader during navigation — show active preloader and fade out smoothly
+      preloader.classList.add('active');
+      if (typeof gsap !== 'undefined') {
+        gsap.set(preloader, { opacity: 1, visibility: 'visible', pointerEvents: 'all' });
+      } else {
+        preloader.style.opacity = '1';
+        preloader.style.visibility = 'visible';
+        preloader.style.pointerEvents = 'all';
+      }
       hideAndResetPreloader();
       return;
     }
@@ -287,10 +296,10 @@
     createParticles();
     preloader.classList.add('active');
 
-    // Ensures the preloader is visible for at least 2000ms regardless of animation length
+    // Ensures the preloader is visible for at least 1200ms regardless of animation length
     const finishInitial = () => {
       const elapsed = Date.now() - initStartTime;
-      const remaining = Math.max(0, 2000 - elapsed);
+      const remaining = Math.max(0, 1200 - elapsed);
       setTimeout(() => {
         isInitialAnimating = false;
         hideAndResetPreloader();
@@ -326,11 +335,11 @@
 
       initTl.to(logo, { duration: 0.18, scale: 1.12, opacity: 0.8, ease: 'power2.out' }, '-=0.2');
 
-      // Safety fallback — force finish after 3500ms regardless
-      setTimeout(() => { if (isInitialAnimating) finishInitial(); }, 3500);
+      // Safety fallback — force finish after 2500ms regardless
+      setTimeout(() => { if (isInitialAnimating) finishInitial(); }, 2500);
     } else {
-      // No GSAP: hold for full 2000ms then hide
-      setTimeout(finishInitial, 2000);
+      // No GSAP: hold for full 1200ms then hide
+      setTimeout(finishInitial, 1200);
     }
   });
 
